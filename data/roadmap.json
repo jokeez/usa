@@ -1,16 +1,16 @@
 {
-  "title": "План обучения кибербезопасности",
-  "description": "Полный пошаговый план: теория + практика с видео-инструкциями",
-  "totalDays": 317,
+  "title": "План обучения: Кибербезопасность → Релокация в США (Blue Team)",
+  "description": "Полный пошаговый план: база → колледж и работа → институт и сертификация → релокация в США (Флорида). Теория и практика с видео.",
+  "totalDays": 200,
   "phases": [
     {
       "id": "phase0",
-      "name": "ФАЗА 0: ОСНОВЫ IT",
-      "duration": 177,
+      "name": "ФАЗА 0: БАЗА (СЕЙЧАС)",
+      "duration": 90,
       "months": [
         {
           "id": "month1",
-          "name": "МЕСЯЦ 1: КОМПЬЮТЕРНЫЕ СЕТИ",
+          "name": "МЕСЯЦ 1: СЕТИ (IP, ПОРТЫ, TCP/UDP)",
           "weeks": [
             {
               "id": "week1-2",
@@ -21,255 +21,88 @@
                   "dayRange": "1-3",
                   "type": "theory",
                   "title": "Модель OSI и TCP/IP",
-                  "description": "Изучение модели OSI и TCP/IP",
-                  "youtubeVideo": "Модель OSI 7 уровней простыми словами за 15 минут",
-                  "whatToUnderstand": "Зачем нужны уровни, чем модель OSI отличается от TCP/IP",
+                  "description": "Изучение модели OSI и TCP/IP для понимания сетевых атак и защиты.",
+                  "youtubeVideo": "NetworkChuck модель OSI TCP IP за 15 минут",
+                  "whatToUnderstand": "Зачем нужны уровни, чем модель OSI отличается от TCP/IP.",
                   "tasks": [
-                    {
-                      "id": "task-theory-osi-1",
-                      "text": "Просмотреть видео и записать названия всех 7 уровней OSI",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-osi-2",
-                      "text": "Нарисовать схему: определить к какому уровню относятся WiFi, IP, HTTP, TCP, Ethernet",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-osi-3",
-                      "text": "Сравнить модели OSI и TCP/IP: записать 3 ключевых отличия"
-                    }
+                    { "id": "task-osi-1", "text": "Просмотреть видео и записать все 7 уровней OSI", "completed": false },
+                    { "id": "task-osi-2", "text": "Нарисовать схему: к какому уровню относятся WiFi, IP, HTTP, TCP", "completed": false },
+                    { "id": "task-osi-3", "text": "Записать 3 ключевых отличия OSI и TCP/IP", "completed": false }
                   ]
                 },
                 {
                   "id": "day4-6",
                   "dayRange": "4-6",
-                  "type": "practice",
-                  "title": "Настройка сети в Packet Tracer",
-                  "description": "Практическая работа с сетями",
-                  "youtubeVideo": "Cisco Packet Tracer для начинающих: первая сеть",
-                  "whatToDo": "Скачать Cisco Packet Tracer. Создать сеть: 2 компьютера → коммутатор. Назначить IP-адреса вручную (192.168.1.10 и 192.168.1.20), пропинговать.",
+                  "type": "theory",
+                  "title": "IP-адресация и маски подсетей",
+                  "description": "Основа для анализа трафика и сетевой безопасности.",
+                  "youtubeVideo": "NetworkChuck IP адреса что такое маска подсети",
+                  "whatToUnderstand": "Как понять, какие устройства в одной сети; формат CIDR.",
                   "tasks": [
-                    {
-                      "id": "task1",
-                      "text": "Скачать и установить Cisco Packet Tracer",
-                      "completed": false
-                    },
-                    {
-                      "id": "task2",
-                      "text": "Создать сеть с 2 компьютерами и коммутатором",
-                      "completed": false
-                    },
-                    {
-                      "id": "task3",
-                      "text": "Назначить IP-адреса 192.168.1.10 и 192.168.1.20",
-                      "completed": false
-                    },
-                    {
-                      "id": "task4",
-                      "text": "Пропинговать между компьютерами",
-                      "completed": false
-                    }
+                    { "id": "task-ip-1", "text": "Определить: 192.168.1.10 и 192.168.1.20 в одной сети при маске 255.255.255.0?", "completed": false },
+                    { "id": "task-ip-2", "text": "Перевести маску 255.255.255.0 в CIDR (/24)", "completed": false },
+                    { "id": "task-ip-3", "text": "Определить сетевой адрес для 10.0.5.100/24", "completed": false }
                   ]
                 },
                 {
                   "id": "day7-9",
                   "dayRange": "7-9",
                   "type": "theory",
-                  "title": "IP-адресация, маски подсетей",
-                  "description": "Изучение IP-адресации",
-                  "youtubeVideo": "Маска подсети за 10 минут: самое простое объяснение",
-                  "whatToUnderstand": "Как понять, какие устройства в одной сети, а какие в разных",
+                  "title": "Протоколы TCP и UDP, порты",
+                  "description": "Понимание портов нужно для firewall, IDS и анализа трафика.",
+                  "youtubeVideo": "TCP vs UDP разница порты объяснение",
+                  "whatToUnderstand": "Почему видеозвонки используют UDP, а браузер — TCP; основные порты 80, 443, 22, 53.",
                   "tasks": [
-                    {
-                      "id": "task-theory-ip-1",
-                      "text": "Определить: находятся ли устройства 192.168.1.10 и 192.168.1.20 в одной сети (маска 255.255.255.0)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-ip-2",
-                      "text": "Перевести маску 255.255.255.0 в формат CIDR (/24)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-ip-3",
-                      "text": "Определить сетевой адрес для IP 10.0.5.100/24"
-                    }
+                    { "id": "task-tcp-1", "text": "Записать 3 отличия TCP от UDP", "completed": false },
+                    { "id": "task-tcp-2", "text": "Для каких сервисов порты: 80, 443, 22, 53, 25?", "completed": false },
+                    { "id": "task-tcp-3", "text": "Объяснить: зачем в Blue Team знать порты и протоколы", "completed": false }
                   ]
                 },
                 {
                   "id": "day10-12",
                   "dayRange": "10-12",
                   "type": "practice",
-                  "title": "Разбиение на подсети",
-                  "description": "Практика работы с подсетями",
-                  "youtubeVideo": "Как делить сеть на подсети: практическое задание",
-                  "whatToDo": "Взять сеть 192.168.0.0/24. Разделить на 4 подсети по 62 хоста. Прописать диапазоны адресов для каждой на бумаге.",
+                  "title": "Wireshark: первый захват трафика",
+                  "description": "Базовый навык для анализа инцидентов и трафика.",
+                  "youtubeVideo": "Wireshark для начинающих захват пакетов",
+                  "whatToDo": "Установить Wireshark. Захватить трафик, зайти на сайт. Найти TCP-пакеты и TCP handshake (SYN, SYN-ACK, ACK).",
                   "tasks": [
-                    {
-                      "id": "task5",
-                      "text": "Разделить сеть 192.168.0.0/24 на 4 подсети",
-                      "completed": false
-                    },
-                    {
-                      "id": "task6",
-                      "text": "Прописать диапазоны адресов для каждой подсети",
-                      "completed": false
-                    }
+                    { "id": "task-ws-1", "text": "Установить Wireshark и выбрать интерфейс", "completed": false },
+                    { "id": "task-ws-2", "text": "Захватить трафик при открытии сайта", "completed": false },
+                    { "id": "task-ws-3", "text": "Применить фильтр tcp и найти handshake", "completed": false }
                   ]
                 }
               ]
             },
             {
               "id": "week3-4",
-              "name": "НЕДЕЛЯ 3-4: ПРОТОКОЛЫ И АНАЛИЗ",
+              "name": "НЕДЕЛЯ 3-4: DNS, HTTP/HTTPS",
               "days": [
                 {
                   "id": "day13-15",
                   "dayRange": "13-15",
                   "type": "theory",
-                  "title": "Протоколы DNS и HTTP",
-                  "description": "Изучение протоколов DNS и HTTP",
-                  "youtubeVideo": "Как работает DNS - подробное объяснение",
-                  "whatToUnderstand": "Как браузер находит сайт, что такое DNS-запись",
+                  "title": "DNS и HTTP/HTTPS",
+                  "description": "Как браузер находит сайт; что видно в незашифрованном трафике.",
+                  "youtubeVideo": "Как работает DNS HTTP HTTPS простое объяснение",
+                  "whatToUnderstand": "Разница HTTP и HTTPS; зачем в ИБ понимать DNS.",
                   "tasks": [
-                    {
-                      "id": "task-theory-dns-1",
-                      "text": "Записать последовательность: что происходит когда браузер запрашивает google.com",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-dns-2",
-                      "text": "Объяснить разницу между HTTP и HTTPS",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-dns-3",
-                      "text": "Определить: какие порты используются для HTTP и HTTPS"
-                    }
+                    { "id": "task-dns-1", "text": "Записать последовательность: что происходит при запросе google.com", "completed": false },
+                    { "id": "task-dns-2", "text": "Объяснить разницу HTTP и HTTPS для безопасности", "completed": false },
+                    { "id": "task-dns-3", "text": "Указать порты для HTTP и HTTPS", "completed": false }
                   ]
                 },
                 {
                   "id": "day16-18",
                   "dayRange": "16-18",
                   "type": "practice",
-                  "title": "Работа с DNS и HTTP через командную строку",
-                  "description": "Практика с DNS и HTTP",
-                  "youtubeVideo": "Командная строка Windows/Linux: nslookup, ping, curl",
-                  "whatToDo": "1) С помощью nslookup узнать IP-адрес vk.com и google.com. 2) С помощью curl -I получить заголовки ответа от сайта ya.ru.",
+                  "title": "nslookup, ping, curl в командной строке",
+                  "description": "Практика для анализа и отладки сети.",
+                  "youtubeVideo": "nslookup ping curl командная строка сеть",
+                  "whatToDo": "nslookup для vk.com и google.com. curl -I для получения заголовков ответа сайта.",
                   "tasks": [
-                    {
-                      "id": "task7",
-                      "text": "Использовать nslookup для vk.com и google.com",
-                      "completed": false
-                    },
-                    {
-                      "id": "task8",
-                      "text": "Использовать curl -I для ya.ru",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day19-21",
-                  "dayRange": "19-21",
-                  "type": "theory",
-                  "title": "Протоколы TCP и UDP, порты",
-                  "description": "Изучение TCP и UDP",
-                  "youtubeVideo": "TCP vs UDP: в чем разница на реальных примерах",
-                  "whatToUnderstand": "Почему Skype использует UDP, а браузер — TCP",
-                  "tasks": [
-                    {
-                      "id": "task-theory-tcp-1",
-                      "text": "Записать 3 ключевых отличия TCP от UDP",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-tcp-2",
-                      "text": "Определить для каких сервисов используются порты: 80, 443, 22, 53, 25",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-tcp-3",
-                      "text": "Объяснить: почему видеозвонки используют UDP, а веб-сайты TCP"
-                    }
-                  ]
-                },
-                {
-                  "id": "day22-24",
-                  "dayRange": "22-24",
-                  "type": "practice",
-                  "title": "Анализ портов и трафика",
-                  "description": "Работа с Wireshark",
-                  "youtubeVideo": "Wireshark для начинающих: первый захват пакетов",
-                  "whatToDo": "1) Установить Wireshark. 2) Запустить захват трафика (выбрать сетевой интерфейс). 3) Открыть браузер и зайти на любой сайт (например, google.com). 4) Остановить захват. 5) Найти в списке пакетов TCP-пакеты (фильтр: tcp). 6) Найти TCP handshake: найти пакет с флагом SYN, затем SYN-ACK, затем ACK.",
-                  "tasks": [
-                    {
-                      "id": "task9",
-                      "text": "Установить Wireshark и выбрать сетевой интерфейс",
-                      "completed": false
-                    },
-                    {
-                      "id": "task9b",
-                      "text": "Запустить захват трафика и зайти на сайт",
-                      "completed": false
-                    },
-                    {
-                      "id": "task10",
-                      "text": "Применить фильтр tcp и найти TCP пакеты",
-                      "completed": false
-                    },
-                    {
-                      "id": "task10b",
-                      "text": "Найти TCP handshake (SYN, SYN-ACK, ACK) в захваченном трафике",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day25-27",
-                  "dayRange": "25-27",
-                  "type": "theory",
-                  "title": "VLAN и коммутация",
-                  "description": "Изучение VLAN",
-                  "youtubeVideo": "VLAN для начинающих: что это и зачем нужно",
-                  "whatToUnderstand": "Как разделить одну физическую сеть на несколько логических",
-                  "tasks": [
-                    {
-                      "id": "task-theory-vlan-1",
-                      "text": "Объяснить простыми словами: что такое VLAN и зачем он нужен",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-vlan-2",
-                      "text": "Придумать пример: как разделить офис на 3 отдела с помощью VLAN",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-vlan-3",
-                      "text": "Определить: могут ли устройства из разных VLAN общаться напрямую"
-                    }
-                  ]
-                },
-                {
-                  "id": "day28-30",
-                  "dayRange": "28-30",
-                  "type": "practice",
-                  "title": "Настройка VLAN в Packet Tracer",
-                  "description": "Практика с VLAN",
-                  "youtubeVideo": "Настройка VLAN в Cisco Packet Tracer: практическое руководство",
-                  "whatToDo": "Создать сеть с 2 VLAN (VLAN 10 - отдел продаж, VLAN 20 - отдел IT). Настроить коммутатор, проверить связность внутри VLAN и изоляцию между VLAN.",
-                  "tasks": [
-                    {
-                      "id": "task11",
-                      "text": "Создать сеть с 2 VLAN в Packet Tracer",
-                      "completed": false
-                    },
-                    {
-                      "id": "task12",
-                      "text": "Проверить связность и изоляцию",
-                      "completed": false
-                    }
+                    { "id": "task-cmd-1", "text": "Узнать IP vk.com и google.com через nslookup", "completed": false },
+                    { "id": "task-cmd-2", "text": "Получить заголовки ответа через curl -I", "completed": false }
                   ]
                 }
               ]
@@ -277,306 +110,73 @@
           ],
           "finalProject": {
             "id": "project1",
-            "dayRange": "25-30",
-            "title": "Создание сети офиса",
-            "youtubeVideo": "Создание сложной сети в Cisco Packet Tracer: офис с отделами",
-            "description": "Собрать сеть: 3 отдела (финансы, продажи, IT) в разных подсетях, общий сервер, маршрутизатор. Настроить так, чтобы все могли ходить в интернет и на сервер, но не могли напрямую связываться между отделами.",
+            "title": "Мини-отчёт: сети и трафик",
+            "description": "Записать в конспект (или в раздел Networking на сайте): модели OSI/TCP/IP, основные порты, что узнал в Wireshark. Добавить скриншот фильтра по TCP.",
+            "youtubeVideo": "Как писать конспекты по кибербезопасности",
             "tasks": [
-              {
-                "id": "project1-task1",
-                "text": "Создать сеть с 3 отделами в разных подсетях",
-                "completed": false
-              },
-              {
-                "id": "project1-task2",
-                "text": "Настроить маршрутизатор",
-                "completed": false
-              },
-              {
-                "id": "project1-task3",
-                "text": "Настроить доступ в интернет и к серверу",
-                "completed": false
-              }
+              { "id": "proj1-1", "text": "Оформить конспект по сетям в Markdown", "completed": false },
+              { "id": "proj1-2", "text": "Добавить скриншот Wireshark с TCP", "completed": false }
             ]
           }
         },
         {
           "id": "month2",
-          "name": "МЕСЯЦ 2: ОПЕРАЦИОННАЯ СИСТЕМА LINUX",
+          "name": "МЕСЯЦ 2: LINUX И BASH",
           "weeks": [
             {
-              "id": "week1-2-linux",
-              "name": "НЕДЕЛЯ 1-2: УСТАНОВКА И БАЗОВЫЕ КОМАНДЫ",
+              "id": "week-linux-1",
+              "name": "НЕДЕЛЯ 1-2: LINUX ОСНОВЫ",
               "days": [
                 {
-                  "id": "day31-33",
-                  "dayRange": "31-33",
+                  "id": "day19-21",
+                  "dayRange": "19-21",
                   "type": "theory",
-                  "title": "Зачем Linux в безопасности, основы",
-                  "description": "Основы Linux",
-                  "youtubeVideo": "Почему хакеры используют Kali Linux? Основы Linux для начинающих",
-                  "whatToUnderstand": "Почему большинство инструментов безопасности работают на Linux",
+                  "title": "Зачем Linux в кибербезопасности",
+                  "description": "Большинство инструментов ИБ и серверов работают на Linux.",
+                  "youtubeVideo": "Почему Linux для хакеров и кибербезопасности основы",
+                  "whatToUnderstand": "Почему Kali, серверы и SOC-инструменты на Linux.",
                   "tasks": [
-                    {
-                      "id": "task-theory-linux-1",
-                      "text": "Записать 3 причины, почему Linux популярен в кибербезопасности",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-linux-2",
-                      "text": "Определить разницу между терминалом и консолью",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-linux-3",
-                      "text": "Изучить список основных дистрибутивов Linux для безопасности (Kali, Parrot, etc.)"
-                    }
+                    { "id": "task-lx-1", "text": "Записать 3 причины использования Linux в ИБ", "completed": false },
+                    { "id": "task-lx-2", "text": "Перечислить каталоги /etc, /var, /tmp и их назначение", "completed": false }
                   ]
                 },
                 {
-                  "id": "day34-36",
-                  "dayRange": "34-36",
+                  "id": "day22-24",
+                  "dayRange": "22-24",
                   "type": "practice",
-                  "title": "Установка Kali Linux в VirtualBox",
-                  "description": "Установка Linux",
-                  "youtubeVideo": "Установка Kali Linux 2024 в VirtualBox: полное руководство",
-                  "whatToDo": "1) Скачать VirtualBox и образ Kali Linux. 2) Установить систему, создать пользователя. 3) Сделать снимок (snapshot) чистой системы.",
+                  "title": "Установка Linux (WSL или VirtualBox)",
+                  "description": "Рабочая среда для практики.",
+                  "youtubeVideo": "Установка Kali Linux VirtualBox или WSL2 Ubuntu",
+                  "whatToDo": "Установить Kali или Ubuntu в VirtualBox/WSL. Создать snapshot чистой системы.",
                   "tasks": [
-                    {
-                      "id": "task13",
-                      "text": "Скачать VirtualBox и Kali Linux",
-                      "completed": false
-                    },
-                    {
-                      "id": "task14",
-                      "text": "Установить Kali Linux",
-                      "completed": false
-                    },
-                    {
-                      "id": "task15",
-                      "text": "Создать snapshot",
-                      "completed": false
-                    }
+                    { "id": "task-lx-3", "text": "Установить Linux (Kali или Ubuntu)", "completed": false },
+                    { "id": "task-lx-4", "text": "Создать snapshot/бэкап образа", "completed": false }
                   ]
                 },
                 {
-                  "id": "day37-39",
-                  "dayRange": "37-39",
-                  "type": "theory",
-                  "title": "Файловая система Linux, основные каталоги",
-                  "description": "Файловая система",
-                  "youtubeVideo": "Файловая система Linux: что где лежит (/etc, /var, /home)",
-                  "whatToUnderstand": "Для чего нужны каталоги /etc (конфиги), /var (логи), /tmp (временные файлы)",
-                  "tasks": [
-                    {
-                      "id": "task-theory-fs-1",
-                      "text": "Записать назначение каталогов: /etc, /var, /home, /tmp, /usr, /root",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-fs-2",
-                      "text": "Объяснить разницу между абсолютным и относительным путями в Linux",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-fs-3",
-                      "text": "Определить: где обычно хранятся логи и конфигурационные файлы"
-                    }
-                  ]
-                },
-                {
-                  "id": "day40-42",
-                  "dayRange": "40-42",
+                  "id": "day25-27",
+                  "dayRange": "25-27",
                   "type": "practice",
-                  "title": "Работа с файлами и каталогами",
-                  "description": "Практика с файлами",
-                  "youtubeVideo": "Терминал Linux: первые 20 команд для начинающих (ls, cd, cp, mv, rm)",
-                  "whatToDo": "1) Создать структуру каталогов ~/labs/{network,web,scripts}. 2) В каталоге web создать файл test.txt с текстом \"Hello Security\". 3) Скопировать этот файл в ~/backups/.",
+                  "title": "Файлы, каталоги, права chmod/chown",
+                  "description": "Базовые команды и права доступа.",
+                  "youtubeVideo": "Linux команды ls cd chmod chown для начинающих",
+                  "whatToDo": "Создать структуру ~/labs/{network,scripts}. Изменить права 755, 644. Понять rwx.",
                   "tasks": [
-                    {
-                      "id": "task16",
-                      "text": "Создать структуру каталогов ~/labs",
-                      "completed": false
-                    },
-                    {
-                      "id": "task17",
-                      "text": "Создать файл test.txt",
-                      "completed": false
-                    },
-                    {
-                      "id": "task18",
-                      "text": "Скопировать файл в ~/backups/",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-4-linux",
-              "name": "НЕДЕЛЯ 3-4: СИСТЕМНОЕ АДМИНИСТРИРОВАНИЕ",
-              "days": [
-                {
-                  "id": "day43-45",
-                  "dayRange": "43-45",
-                  "type": "theory",
-                  "title": "Пользователи, группы и права доступа",
-                  "description": "Права доступа",
-                  "youtubeVideo": "Права доступа в Linux: chmod, chown, chgrp на практике",
-                  "whatToUnderstand": "Что означают цифры 755 и 644 в правах доступа",
-                  "tasks": [
-                    {
-                      "id": "task-theory-perms-1",
-                      "text": "Расшифровать права доступа: 755, 644, 777 (rwx для owner, group, others)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-perms-2",
-                      "text": "Объяснить разницу между chmod, chown и chgrp",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-perms-3",
-                      "text": "Определить: какие права должны быть у исполняемого скрипта"
-                    }
+                    { "id": "task-lx-5", "text": "Создать каталоги и файлы, выставить chmod 755/644", "completed": false },
+                    { "id": "task-lx-6", "text": "Объяснить, что означают 755 и 644", "completed": false }
                   ]
                 },
                 {
-                  "id": "day46-48",
-                  "dayRange": "46-48",
+                  "id": "day28-30",
+                  "dayRange": "28-30",
                   "type": "practice",
-                  "title": "Управление правами и пользователями",
-                  "description": "Практика с правами",
-                  "youtubeVideo": "Создание пользователей и групп в Linux: практическое руководство",
-                  "whatToDo": "1) Создать пользователя analyst. 2) Создать группу security. 3) Добавить пользователя в группу. 4) Для папки /opt/secret_data установить права: владелец — root, группа — security, доступ — только чтение для группы.",
+                  "title": "Bash: переменные, условия, циклы",
+                  "description": "Основа для скриптов автоматизации в ИБ.",
+                  "youtubeVideo": "Bash scripting для начинающих переменные циклы",
+                  "whatToDo": "Написать скрипт: вывод списка файлов в каталоге; скрипт с условием (проверка существования файла).",
                   "tasks": [
-                    {
-                      "id": "task19",
-                      "text": "Создать пользователя analyst",
-                      "completed": false
-                    },
-                    {
-                      "id": "task20",
-                      "text": "Создать группу security",
-                      "completed": false
-                    },
-                    {
-                      "id": "task21",
-                      "text": "Настроить права для /opt/secret_data",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day49-51",
-                  "dayRange": "49-51",
-                  "type": "theory",
-                  "title": "Процессы, службы и сетевая настройка",
-                  "description": "Управление процессами",
-                  "youtubeVideo": "Управление процессами в Linux: ps, top, kill, systemctl",
-                  "whatToUnderstand": "Как найти \"тяжелый\" процесс и как управлять службами",
-                  "tasks": [
-                    {
-                      "id": "task-theory-proc-1",
-                      "text": "Записать основные команды для управления процессами: ps, top, kill",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-proc-2",
-                      "text": "Объяснить разницу между сигналами kill -9 и kill -15",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-proc-3",
-                      "text": "Определить: как проверить статус службы и добавить её в автозагрузку"
-                    }
-                  ]
-                },
-                {
-                  "id": "day52-55",
-                  "dayRange": "52-55",
-                  "type": "practice",
-                  "title": "Настройка веб-сервера и мониторинг",
-                  "description": "Настройка Nginx",
-                  "youtubeVideo": "Установка и настройка Nginx на Ubuntu/Kali Linux за 10 минут",
-                  "whatToDo": "1) Обновить пакеты (sudo apt update). 2) Установить Nginx (sudo apt install nginx). 3) Запустить службу (sudo systemctl start nginx). 4) Проверить статус службы (sudo systemctl status nginx). 5) Добавить в автозагрузку (sudo systemctl enable nginx). 6) Проверить, что Nginx слушает порт 80 (sudo netstat -tlnp | grep :80). 7) Настроить брандмауэр (sudo ufw allow 80). 8) Проверить доступность в браузере (http://localhost).",
-                  "tasks": [
-                    {
-                      "id": "task22",
-                      "text": "Установить Nginx (apt update, apt install)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task22b",
-                      "text": "Запустить службу и проверить статус (systemctl start, systemctl status)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task23",
-                      "text": "Добавить службу в автозагрузку (systemctl enable)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task23b",
-                      "text": "Проверить, что порт 80 открыт (netstat или ss)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task24",
-                      "text": "Настроить брандмауэр (ufw allow 80) и проверить в браузере",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day56-58",
-                  "dayRange": "56-58",
-                  "type": "theory",
-                  "title": "SSH и удаленное управление",
-                  "description": "SSH основы",
-                  "youtubeVideo": "SSH для начинающих: ключи, туннелирование, безопасность",
-                  "whatToUnderstand": "Как безопасно подключаться к удаленным серверам, что такое SSH-ключи",
-                  "tasks": [
-                    {
-                      "id": "task-theory-ssh-1",
-                      "text": "Объяснить разницу между аутентификацией по паролю и по ключу SSH",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-ssh-2",
-                      "text": "Записать базовую команду для SSH подключения: ssh user@host",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-ssh-3",
-                      "text": "Определить: зачем нужны SSH-туннели и портфорвардинг"
-                    }
-                  ]
-                },
-                {
-                  "id": "day59-60",
-                  "dayRange": "59-60",
-                  "type": "practice",
-                  "title": "Настройка SSH и туннелирование",
-                  "description": "Практика с SSH",
-                  "youtubeVideo": "Настройка SSH с ключами и туннелирование: практика",
-                  "whatToDo": "1) Сгенерировать SSH-пару ключей (ssh-keygen). 2) Настроить подключение по ключу (без пароля). 3) Создать SSH-туннель для доступа к веб-серверу через удаленную машину.",
-                  "tasks": [
-                    {
-                      "id": "task25",
-                      "text": "Сгенерировать SSH ключи",
-                      "completed": false
-                    },
-                    {
-                      "id": "task26",
-                      "text": "Настроить подключение по ключу",
-                      "completed": false
-                    },
-                    {
-                      "id": "task27",
-                      "text": "Создать SSH туннель",
-                      "completed": false
-                    }
+                    { "id": "task-bash-1", "text": "Написать скрипт вывода списка файлов в каталоге", "completed": false },
+                    { "id": "task-bash-2", "text": "Скрипт с if: проверка существования файла", "completed": false }
                   ]
                 }
               ]
@@ -584,491 +184,59 @@
           ],
           "finalProject": {
             "id": "project2",
-            "dayRange": "56-60",
-            "title": "Написание bash-скрипта для мониторинга",
-            "youtubeVideo": "Bash-скрипты для начинающих: пишем первый скрипт мониторинга",
-            "description": "Написать скрипт server_check.sh, который: 1) Проверяет доступность порта 80 на localhost, 2) Проверяет занятость диска, 3) Выводит 5 самых \"прожорливых\" процессов. Сделать скрипт исполняемым и запустить по расписанию (cron).",
+            "title": "Шпаргалка Linux/Bash",
+            "description": "Оформить в разделе Linux на сайте шпаргалку: основные команды (ls, cd, grep, find, chmod), один пример bash-скрипта.",
+            "youtubeVideo": "Шпаргалки по Linux командам",
             "tasks": [
-              {
-                "id": "project2-task1",
-                "text": "Написать скрипт server_check.sh",
-                "completed": false
-              },
-              {
-                "id": "project2-task2",
-                "text": "Добавить проверку порта 80",
-                "completed": false
-              },
-              {
-                "id": "project2-task3",
-                "text": "Добавить проверку диска и процессов",
-                "completed": false
-              },
-              {
-                "id": "project2-task4",
-                "text": "Настроить cron",
-                "completed": false
-              }
+              { "id": "proj2-1", "text": "Добавить шпаргалку в content/linux/", "completed": false }
             ]
           }
         },
         {
           "id": "month3",
-          "name": "МЕСЯЦ 3: БАЗОВОЕ ПРОГРАММИРОВАНИЕ (PYTHON ДЛЯ БЕЗОПАСНОСТИ)",
+          "name": "МЕСЯЦ 3: PYTHON ДЛЯ БЕЗОПАСНОСТИ И БОТ ДЛЯ АУКЦИОНОВ",
           "weeks": [
             {
-              "id": "week1-2-python",
-              "name": "НЕДЕЛЯ 1-2: ОСНОВЫ PYTHON",
+              "id": "week-py-1",
+              "name": "НЕДЕЛЯ 1-2: PYTHON ОСНОВЫ",
               "days": [
                 {
-                  "id": "day61-63",
-                  "dayRange": "61-63",
+                  "id": "day31-33",
+                  "dayRange": "31-33",
                   "type": "theory",
-                  "title": "Переменные, типы данных, ввод/вывод",
-                  "description": "Основы Python",
-                  "youtubeVideo": "Python для начинающих: урок 1 - переменные и типы данных",
-                  "whatToUnderstand": "Как хранить данные, что такое строка, число, список",
+                  "title": "Python: синтаксис, типы, функции",
+                  "description": "Python часто используется для автоматизации и скриптов в ИБ.",
+                  "youtubeVideo": "Python для начинающих основы за час",
+                  "whatToUnderstand": "Переменные, списки, словари, функции, циклы.",
                   "tasks": [
-                    {
-                      "id": "task-theory-python-1",
-                      "text": "Записать примеры объявления переменных: строка, число, список, словарь",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-2",
-                      "text": "Объяснить разницу между типами данных: int, float, str, list, dict",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-3",
-                      "text": "Записать примеры input() и print() для ввода и вывода данных"
-                    }
+                    { "id": "task-py-1", "text": "Установить Python 3, написать простой скрипт (вывод, цикл)", "completed": false },
+                    { "id": "task-py-2", "text": "Написать функцию: принять список, вернуть количество элементов", "completed": false }
                   ]
                 },
                 {
-                  "id": "day64-66",
-                  "dayRange": "64-66",
+                  "id": "day34-36",
+                  "dayRange": "34-36",
                   "type": "practice",
-                  "title": "Первые программы",
-                  "description": "Практика Python",
-                  "youtubeVideo": "Пишем первую программу на Python: калькулятор и простые примеры",
-                  "whatToDo": "1) Написать программу, которая запрашивает имя и возраст, затем выводит приветствие. 2) Написать простой калькулятор: запросить два числа и операцию (+, -, *, /), вывести результат.",
+                  "title": "requests и работа с API",
+                  "description": "Для парсинга, ботов и автоматизации.",
+                  "youtubeVideo": "Python requests работа с API пример",
+                  "whatToDo": "Установить requests. Сделать GET к публичному API, обработать JSON.",
                   "tasks": [
-                    {
-                      "id": "task28",
-                      "text": "Написать программу с приветствием (input, print)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task29",
-                      "text": "Написать простой калькулятор (input, преобразование типов, базовые операции)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task29b",
-                      "text": "Улучшить калькулятор: добавить проверку деления на ноль",
-                      "completed": false
-                    }
+                    { "id": "task-py-3", "text": "GET запрос к API, вывести данные из JSON", "completed": false },
+                    { "id": "task-py-4", "text": "Обработать ошибки (try/except) и таймаут", "completed": false }
                   ]
                 },
                 {
-                  "id": "day67-69",
-                  "dayRange": "67-69",
-                  "type": "theory",
-                  "title": "Условия и циклы",
-                  "description": "Условия и циклы",
-                  "youtubeVideo": "Условные операторы if/elif/else в Python на примерах",
-                  "whatToUnderstand": "Как программа принимает решения",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-4",
-                      "text": "Записать примеры условных операторов: if, elif, else",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-5",
-                      "text": "Записать примеры циклов: for и while с условиями",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-6",
-                      "text": "Объяснить: когда использовать for, а когда while"
-                    }
-                  ]
-                },
-                {
-                  "id": "day70-72",
-                  "dayRange": "70-72",
+                  "id": "day37-39",
+                  "dayRange": "37-39",
                   "type": "practice",
-                  "title": "Программы с условиями и циклами",
-                  "description": "Практика условий и циклов",
-                  "youtubeVideo": "Python: практика условий и циклов на простых задачах",
-                  "whatToDo": "1) Написать программу проверки пароля: запросить пароль, если он равен 'admin123', вывести 'Доступ разрешен', иначе 'Доступ запрещен'. 2) Написать программу, которая выводит числа от 1 до 10 и их квадраты. 3) Написать программу подсчета четных чисел в списке [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].",
+                  "title": "Бот для аукционов: идея и каркас",
+                  "description": "Практический проект: автоматизация для аукционов контейнеров.",
+                  "youtubeVideo": "Python бот автоматизация веб или API",
+                  "whatToDo": "Определить цель бота (уведомления, парсинг лотов, ставки — по возможностям). Написать каркас: конфиг, один запрос к сайту/API или парсинг страницы.",
                   "tasks": [
-                    {
-                      "id": "task30",
-                      "text": "Написать программу проверки пароля (if/else)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task31",
-                      "text": "Написать программу с циклом for (числа и их квадраты)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task31b",
-                      "text": "Написать программу подсчета четных чисел в списке (цикл + условие)",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day73-75",
-                  "dayRange": "73-75",
-                  "type": "practice",
-                  "title": "Работа с файлами (базовая)",
-                  "description": "Практика работы с файлами",
-                  "youtubeVideo": "Python: работа с файлами - чтение и запись для начинающих",
-                  "whatToDo": "1) Создать текстовый файл test.txt с содержимым 'Hello World'. 2) Написать программу, которая читает этот файл и выводит его содержимое. 3) Написать программу, которая читает файл построчно и выводит каждую строку с номером.",
-                  "tasks": [
-                    {
-                      "id": "task31c",
-                      "text": "Создать файл test.txt и записать в него текст",
-                      "completed": false
-                    },
-                    {
-                      "id": "task31d",
-                      "text": "Написать программу чтения файла целиком",
-                      "completed": false
-                    },
-                    {
-                      "id": "task31e",
-                      "text": "Написать программу чтения файла построчно (readline/readlines)",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day76-78",
-                  "dayRange": "76-78",
-                  "type": "theory",
-                  "title": "Обработка ошибок и исключений",
-                  "description": "Обработка ошибок",
-                  "youtubeVideo": "Обработка ошибок в Python: try/except/finally для начинающих",
-                  "whatToUnderstand": "Как программа обрабатывает ошибки, что такое исключения",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-7",
-                      "text": "Записать структуру обработки ошибок: try, except, finally",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-8",
-                      "text": "Объяснить разницу между ValueError, FileNotFoundError, KeyError",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-9",
-                      "text": "Определить: зачем нужен блок finally в обработке ошибок"
-                    }
-                  ]
-                },
-                {
-                  "id": "day79-81",
-                  "dayRange": "79-81",
-                  "type": "practice",
-                  "title": "Программа для анализа логов",
-                  "description": "Анализ логов",
-                  "youtubeVideo": "Python: парсим логи с помощью условий и циклов",
-                  "whatToDo": "1) Скачать пример файла access.log. 2) Написать программу, которая читает файл построчно. 3) Найти все строки с кодом ответа 404. 4) Подсчитать количество таких запросов и вывести их список.",
-                  "tasks": [
-                    {
-                      "id": "task32",
-                      "text": "Скачать файл access.log (пример)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task32b",
-                      "text": "Написать программу чтения логов построчно",
-                      "completed": false
-                    },
-                    {
-                      "id": "task32c",
-                      "text": "Найти строки с кодом 404 (условие if, поиск в строке)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task32d",
-                      "text": "Подсчитать и вывести список всех 404 ошибок",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day82-84",
-                  "dayRange": "82-84",
-                  "type": "practice",
-                  "title": "Улучшение программ с обработкой ошибок",
-                  "description": "Практика обработки ошибок",
-                  "youtubeVideo": "Python: добавляем обработку ошибок в существующие программы",
-                  "whatToDo": "Улучшить программу анализа логов: добавить обработку ошибок (файл не найден, нет прав доступа, пустой файл). Программа должна корректно работать во всех случаях.",
-                  "tasks": [
-                    {
-                      "id": "task33",
-                      "text": "Добавить обработку FileNotFoundError (файл не найден)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task33b",
-                      "text": "Добавить обработку PermissionError (нет прав доступа)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task33c",
-                      "text": "Добавить проверку на пустой файл",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-4-python",
-              "name": "НЕДЕЛЯ 3-4: СЕТЕВОЕ ПРОГРАММИРОВАНИЕ ДЛЯ БЕЗОПАСНОСТИ",
-              "days": [
-                {
-                  "id": "day85-87",
-                  "dayRange": "85-87",
-                  "type": "theory",
-                  "title": "Библиотеки requests и socket",
-                  "description": "Сетевое программирование",
-                  "youtubeVideo": "Python библиотека requests: делаем HTTP-запросы за 15 минут",
-                  "whatToUnderstand": "Как программа может общаться с веб-серверами",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-10",
-                      "text": "Записать базовый пример использования requests.get() для HTTP-запроса",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-11",
-                      "text": "Объяснить разницу между библиотеками requests и socket",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-12",
-                      "text": "Определить: как получить код ответа и содержимое ответа из requests"
-                    }
-                  ]
-                },
-                {
-                  "id": "day88-90",
-                  "dayRange": "88-90",
-                  "type": "practice",
-                  "title": "Работа с HTTP-запросами",
-                  "description": "Практика requests",
-                  "youtubeVideo": "Python requests: практические примеры HTTP-запросов",
-                  "whatToDo": "1) Установить библиотеку requests (pip install requests). 2) Написать программу, которая делает GET-запрос к httpbin.org/get и выводит ответ. 3) Получить код ответа и вывести его. 4) Получить содержимое ответа в формате JSON и вывести его.",
-                  "tasks": [
-                    {
-                      "id": "task34",
-                      "text": "Установить библиотеку requests",
-                      "completed": false
-                    },
-                    {
-                      "id": "task34b",
-                      "text": "Написать программу с GET-запросом к httpbin.org/get",
-                      "completed": false
-                    },
-                    {
-                      "id": "task34c",
-                      "text": "Вывести код ответа и содержимое JSON",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day91-93",
-                  "dayRange": "91-93",
-                  "type": "practice",
-                  "title": "Сканер открытых портов",
-                  "description": "Сканер портов",
-                  "youtubeVideo": "Пишем сканер портов на Python с нуля (socket library)",
-                  "whatToDo": "1) Импортировать библиотеку socket. 2) Написать функцию проверки одного порта (создать соединение, закрыть). 3) Добавить обработку ошибок (таймаут, закрытый порт). 4) Написать цикл для проверки портов 80, 443, 22, 8080 на localhost.",
-                  "tasks": [
-                    {
-                      "id": "task35",
-                      "text": "Написать функцию проверки одного порта (socket.connect)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task35b",
-                      "text": "Добавить таймаут (socket.settimeout) и обработку ошибок",
-                      "completed": false
-                    },
-                    {
-                      "id": "task35c",
-                      "text": "Добавить цикл для проверки нескольких портов",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day94-96",
-                  "dayRange": "94-96",
-                  "type": "theory",
-                  "title": "Работа с файлами и аргументами командной строки",
-                  "description": "Файлы и аргументы",
-                  "youtubeVideo": "Python: работа с файлами, чтение и запись + argparse",
-                  "whatToUnderstand": "Как скрипт получает параметры при запуске",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-13",
-                      "text": "Записать примеры открытия файла: open() с режимами 'r', 'w', 'a'",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-14",
-                      "text": "Записать пример использования sys.argv для аргументов командной строки",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-15",
-                      "text": "Объяснить разницу между read(), readline() и readlines() для чтения файлов"
-                    }
-                  ]
-                },
-                {
-                  "id": "day97-99",
-                  "dayRange": "97-99",
-                  "type": "practice",
-                  "title": "Утилита для проверки сайтов",
-                  "description": "Проверка сайтов",
-                  "youtubeVideo": "Пишем утилиту для проверки доступности сайтов на Python",
-                  "whatToDo": "1) Написать функцию проверки одного URL (requests.get, проверить код 200). 2) Написать программу, которая читает список URL из файла urls.txt (по одному URL на строку). 3) Проверить каждый URL и вывести результат. 4) Сохранить результаты в файл results.txt (URL и статус).",
-                  "tasks": [
-                    {
-                      "id": "task36",
-                      "text": "Написать функцию проверки одного URL",
-                      "completed": false
-                    },
-                    {
-                      "id": "task36b",
-                      "text": "Написать программу чтения URL из файла (readlines)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task36c",
-                      "text": "Добавить цикл проверки всех URL и сохранение результатов",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day100-102",
-                  "dayRange": "100-102",
-                  "type": "theory",
-                  "title": "Работа с JSON, CSV и регулярными выражениями",
-                  "description": "JSON, CSV, regex",
-                  "youtubeVideo": "Python: работа с JSON и CSV файлами + регулярные выражения",
-                  "whatToUnderstand": "Как парсить структурированные данные, как искать паттерны в тексте",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-16",
-                      "text": "Записать примеры работы с JSON: json.loads() и json.dumps()",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-17",
-                      "text": "Записать простой пример регулярного выражения для поиска email в тексте",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-18",
-                      "text": "Объяснить разницу между JSON и CSV форматами данных"
-                    }
-                  ]
-                },
-                {
-                  "id": "day103-105",
-                  "dayRange": "103-105",
-                  "type": "practice",
-                  "title": "Парсер логов с регулярными выражениями",
-                  "description": "Парсинг логов",
-                  "youtubeVideo": "Python: парсим логи с помощью регулярных выражений (regex)",
-                  "whatToDo": "1) Импортировать библиотеку re. 2) Написать простое регулярное выражение для поиска IP-адреса (например, \\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}). 3) Написать программу, которая находит все IP-адреса в файле access.log. 4) Расширить: найти IP, дату и код ответа. 5) Сохранить результаты в JSON-файл.",
-                  "tasks": [
-                    {
-                      "id": "task37",
-                      "text": "Написать регулярное выражение для IP-адреса",
-                      "completed": false
-                    },
-                    {
-                      "id": "task37b",
-                      "text": "Найти все IP-адреса в файле access.log (re.findall)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task37c",
-                      "text": "Расширить поиск: IP, дата, код ответа",
-                      "completed": false
-                    },
-                    {
-                      "id": "task37d",
-                      "text": "Сохранить результаты в JSON-файл (json.dumps)",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day106-108",
-                  "dayRange": "106-108",
-                  "type": "theory",
-                  "title": "Работа с API (REST)",
-                  "description": "REST API",
-                  "youtubeVideo": "Python requests: работа с REST API для начинающих",
-                  "whatToUnderstand": "Как получать данные из веб-API, что такое JSON-ответы",
-                  "tasks": [
-                    {
-                      "id": "task-theory-python-19",
-                      "text": "Записать пример GET-запроса к REST API с requests.get()",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-20",
-                      "text": "Объяснить разницу между методами HTTP: GET, POST, PUT, DELETE",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-python-21",
-                      "text": "Определить: как обработать JSON-ответ от API и извлечь данные"
-                    }
-                  ]
-                },
-                {
-                  "id": "day109-111",
-                  "dayRange": "109-111",
-                  "type": "practice",
-                  "title": "Интеграция с внешним API",
-                  "description": "Работа с API",
-                  "youtubeVideo": "Python: создаем утилиту для проверки IP через API",
-                  "whatToDo": "1) Использовать бесплатный API ip-api.com (формат: http://ip-api.com/json/IP). 2) Написать программу, которая принимает IP-адрес, делает запрос к API. 3) Получить JSON-ответ и извлечь информацию (страна, город). 4) Вывести результат. 5) Сохранить в файл result.json.",
-                  "tasks": [
-                    {
-                      "id": "task38",
-                      "text": "Написать функцию запроса к IP API",
-                      "completed": false
-                    },
-                    {
-                      "id": "task38b",
-                      "text": "Обработать JSON-ответ и извлечь данные (response.json())",
-                      "completed": false
-                    },
-                    {
-                      "id": "task38c",
-                      "text": "Вывести результат и сохранить в JSON-файл",
-                      "completed": false
-                    }
+                    { "id": "task-bot-1", "text": "Описать идею бота и что он должен делать", "completed": false },
+                    { "id": "task-bot-2", "text": "Реализовать каркас: конфиг + один запрос/парсинг", "completed": false }
                   ]
                 }
               ]
@@ -1076,1580 +244,287 @@
           ],
           "finalProject": {
             "id": "project3",
-            "dayRange": "105-111",
-            "title": "Простой сниффер/анализатор пакетов",
-            "youtubeVideo": "Пишем простой сниффер на Python с помощью scapy",
-            "description": "1) Установить библиотеку scapy. 2) Написать скрипт, который перехватывает пакеты в сети и выводит информацию об IP-адресах отправителя/получателя. 3) Добавить фильтр для отображения только HTTP-запросов. ВАЖНО: Запускать только в своей домашней сети на своей машине.",
+            "title": "Документировать бота в разделе Python",
+            "description": "В content/python/ описать: что делает бот, какие библиотеки (requests, selenium и т.д.), как запускать. Ссылка на репозиторий если есть.",
+            "youtubeVideo": "Как вести документацию проекта на GitHub",
             "tasks": [
-              {
-                "id": "project3-task1",
-                "text": "Установить scapy",
-                "completed": false
-              },
-              {
-                "id": "project3-task2",
-                "text": "Написать сниффер пакетов",
-                "completed": false
-              },
-              {
-                "id": "project3-task3",
-                "text": "Добавить фильтр HTTP",
-                "completed": false
-              }
+              { "id": "proj3-1", "text": "Добавить описание бота в content/python/", "completed": false }
             ]
           }
         },
         {
-          "id": "month3-5",
-          "name": "МЕСЯЦ 3.5: ВЕБ-ТЕХНОЛОГИИ (HTML И JAVASCRIPT)",
+          "id": "month4",
+          "name": "МЕСЯЦ 4: ИНСТРУМЕНТЫ (NMAP, WIRESHARK, ОСНОВЫ)",
           "weeks": [
             {
-              "id": "week1-html",
-              "name": "НЕДЕЛЯ 1: ОСНОВЫ HTML",
+              "id": "week-tools-1",
+              "name": "НЕДЕЛЯ 1-2: NMAP И СКАНИРОВАНИЕ",
               "days": [
                 {
-                  "id": "day112-114",
-                  "dayRange": "112-114",
+                  "id": "day40-42",
+                  "dayRange": "40-42",
                   "type": "theory",
-                  "title": "Структура HTML документа, основные теги",
-                  "description": "Основы HTML",
-                  "youtubeVideo": "HTML для начинающих: структура документа и основные теги за 30 минут",
-                  "whatToUnderstand": "Как устроен HTML-документ, что такое теги, атрибуты, вложенность элементов",
+                  "title": "Nmap: зачем и когда используют",
+                  "description": "Сканирование портов и хостов — база для пентеста и защиты.",
+                  "youtubeVideo": "Nmap для начинающих сканирование портов",
+                  "whatToUnderstand": "Только в своей сети или с разрешения: сканирование без разрешения незаконно.",
                   "tasks": [
-                    {
-                      "id": "task-theory-html-1",
-                      "text": "Записать базовую структуру HTML-документа: <!DOCTYPE>, <html>, <head>, <body>",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-html-2",
-                      "text": "Перечислить основные теги: заголовки (h1-h6), параграф (p), ссылка (a), изображение (img)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-html-3",
-                      "text": "Объяснить разницу между блочными и строчными элементами"
-                    }
+                    { "id": "task-nmap-1", "text": "Записать основные флаги: -sV, -sC, -p, -A", "completed": false },
+                    { "id": "task-nmap-2", "text": "Объяснить разницу TCP и UDP сканирования", "completed": false }
                   ]
                 },
                 {
-                  "id": "day115-117",
-                  "dayRange": "115-117",
+                  "id": "day43-45",
+                  "dayRange": "43-45",
                   "type": "practice",
-                  "title": "Создание первой HTML страницы",
-                  "description": "Практика HTML",
-                  "youtubeVideo": "Создаем первую HTML страницу: структура, заголовки, параграфы",
-                  "whatToDo": "Создать HTML-страницу с информацией о себе. Использовать: заголовки (h1-h6), параграфы (p), списки (ul, ol), ссылки (a), изображения (img).",
+                  "title": "Nmap на своей лаборатории",
+                  "description": "Практика на localhost или своей VM.",
+                  "youtubeVideo": "Nmap практика сканирование localhost",
+                  "whatToDo": "Сканировать localhost или свою VM: nmap -sV -sC. Определить открытые порты и сервисы.",
                   "tasks": [
-                    {
-                      "id": "task-html1",
-                      "text": "Создать HTML-страницу с заголовками и параграфами",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-html2",
-                      "text": "Добавить списки и ссылки",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-html3",
-                      "text": "Добавить изображения",
-                      "completed": false
-                    }
+                    { "id": "task-nmap-3", "text": "Выполнить nmap -sV на свой хост, записать результат", "completed": false },
+                    { "id": "task-nmap-4", "text": "Добавить в конспект Tools: синтаксис Nmap", "completed": false }
                   ]
                 },
                 {
-                  "id": "day118-120",
-                  "dayRange": "118-120",
-                  "type": "theory",
-                  "title": "Формы, таблицы, семантика HTML5",
-                  "description": "Продвинутый HTML",
-                  "youtubeVideo": "HTML формы и таблицы: полный разбор для начинающих",
-                  "whatToUnderstand": "Как создавать формы для ввода данных, таблицы, семантические теги HTML5",
-                  "tasks": [
-                    {
-                      "id": "task-theory-html-4",
-                      "text": "Записать структуру HTML-формы: <form>, <input>, <textarea>, <select>",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-html-5",
-                      "text": "Записать структуру HTML-таблицы: <table>, <tr>, <td>, <th>",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-html-6",
-                      "text": "Перечислить семантические теги HTML5: <header>, <nav>, <main>, <article>, <footer>"
-                    }
-                  ]
-                },
-                {
-                  "id": "day121-123",
-                  "dayRange": "121-123",
+                  "id": "day46-48",
+                  "dayRange": "46-48",
                   "type": "practice",
-                  "title": "Создание формы обратной связи",
-                  "description": "Практика форм",
-                  "youtubeVideo": "Создаем форму обратной связи на HTML: input, textarea, select",
-                  "whatToDo": "Создать HTML-форму с полями: имя, email, сообщение, выбор темы. Добавить валидацию через атрибуты HTML5 (required, type=\"email\").",
+                  "title": "Wireshark: фильтры и разбор трафика",
+                  "description": "Умение искать подозрительный трафик — навык Blue Team.",
+                  "youtubeVideo": "Wireshark фильтры анализ трафика",
+                  "whatToDo": "Захватить трафик. Применить фильтры: ip.addr, tcp.port, http. Записать как найти запрос к конкретному домену.",
                   "tasks": [
-                    {
-                      "id": "task-html4",
-                      "text": "Создать форму с полями ввода",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-html5",
-                      "text": "Добавить валидацию полей",
-                      "completed": false
-                    }
+                    { "id": "task-ws2-1", "text": "Использовать фильтры ip.addr и tcp.port", "completed": false },
+                    { "id": "task-ws2-2", "text": "Найти HTTP-запрос к одному домену в захвате", "completed": false }
                   ]
                 }
               ]
             },
             {
-              "id": "week2-js-basics",
-              "name": "НЕДЕЛЯ 2: ОСНОВЫ JAVASCRIPT",
+              "id": "week-tools-2",
+              "name": "НЕДЕЛЯ 3-4: METASPLOIT ОСНОВЫ",
               "days": [
                 {
-                  "id": "day124-126",
-                  "dayRange": "124-126",
+                  "id": "day49-51",
+                  "dayRange": "49-51",
                   "type": "theory",
-                  "title": "Переменные, типы данных, функции в JavaScript",
-                  "description": "Основы JavaScript",
-                  "youtubeVideo": "JavaScript для начинающих: переменные, типы данных, функции",
-                  "whatToUnderstand": "Как объявлять переменные (let, const, var), типы данных, как создавать функции",
+                  "title": "Metasploit: что это и зачем в обучении",
+                  "description": "Понимание атак помогает защищаться (Blue Team).",
+                  "youtubeVideo": "Metasploit основы для начинающих",
+                  "whatToUnderstand": "Только в своей лаборатории. Понимание exploit vs payload.",
                   "tasks": [
-                    {
-                      "id": "task-theory-js-1",
-                      "text": "Записать примеры объявления переменных: let, const, var (разница между ними)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-2",
-                      "text": "Записать пример создания функции: function name() {} и стрелочная функция",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-3",
-                      "text": "Перечислить основные типы данных в JavaScript: string, number, boolean, object, array"
-                    }
+                    { "id": "task-msf-1", "text": "Записать: что такое exploit и payload в Metasploit", "completed": false },
+                    { "id": "task-msf-2", "text": "Как Blue Team использует знание Metasploit", "completed": false }
                   ]
                 },
                 {
-                  "id": "day127-129",
-                  "dayRange": "127-129",
+                  "id": "day52-54",
+                  "dayRange": "52-54",
                   "type": "practice",
-                  "title": "Первые JavaScript программы",
-                  "description": "Практика JavaScript",
-                  "youtubeVideo": "Пишем первые программы на JavaScript: калькулятор и валидатор",
-                  "whatToDo": "1) Создать HTML-страницу с калькулятором (сложение, вычитание, умножение, деление). 2) Написать функцию валидации email с использованием регулярных выражений.",
+                  "title": "TryHackMe: первая комната",
+                  "description": "Практика в легальной среде.",
+                  "youtubeVideo": "TryHackMe как начать первая комната",
+                  "whatToDo": "Зарегистрироваться на TryHackMe. Пройти комнату из Pre-Security или Introduction to Cyber Security.",
                   "tasks": [
-                    {
-                      "id": "task-js1",
-                      "text": "Создать калькулятор на JavaScript",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-js2",
-                      "text": "Написать функцию валидации email",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day130-132",
-                  "dayRange": "130-132",
-                  "type": "theory",
-                  "title": "Работа с DOM: выбор элементов, изменение содержимого",
-                  "description": "DOM манипуляции",
-                  "youtubeVideo": "JavaScript DOM: выбор элементов, изменение содержимого страницы",
-                  "whatToUnderstand": "Что такое DOM, как выбирать элементы (getElementById, querySelector), как изменять текст и атрибуты",
-                  "tasks": [
-                    {
-                      "id": "task-theory-js-4",
-                      "text": "Записать методы выбора элементов: getElementById(), querySelector(), querySelectorAll()",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-5",
-                      "text": "Записать примеры изменения содержимого: textContent, innerHTML, setAttribute()",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-6",
-                      "text": "Объяснить: что такое DOM и как браузер создает DOM-дерево из HTML"
-                    }
-                  ]
-                },
-                {
-                  "id": "day133-135",
-                  "dayRange": "133-135",
-                  "type": "practice",
-                  "title": "Интерактивная страница с DOM",
-                  "description": "Практика DOM",
-                  "youtubeVideo": "Создаем интерактивную страницу: работа с DOM на практике",
-                  "whatToDo": "Создать страницу с кнопкой, которая при клике меняет цвет фона, текст заголовка и добавляет новый элемент в список.",
-                  "tasks": [
-                    {
-                      "id": "task-js3",
-                      "text": "Создать интерактивную страницу с кнопками",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-js4",
-                      "text": "Реализовать динамическое изменение DOM",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-js-advanced",
-              "name": "НЕДЕЛЯ 3: ПРОДВИНУТЫЙ JAVASCRIPT",
-              "days": [
-                {
-                  "id": "day136-138",
-                  "dayRange": "136-138",
-                  "type": "theory",
-                  "title": "События, обработчики, формы, LocalStorage",
-                  "description": "События и хранение данных",
-                  "youtubeVideo": "JavaScript события: addEventListener, формы, LocalStorage",
-                  "whatToUnderstand": "Как обрабатывать события (click, submit, input), как сохранять данные в браузере",
-                  "tasks": [
-                    {
-                      "id": "task-theory-js-7",
-                      "text": "Записать пример addEventListener() для обработки события click",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-8",
-                      "text": "Записать примеры работы с LocalStorage: setItem(), getItem(), removeItem()",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-9",
-                      "text": "Перечислить основные события: click, submit, input, change, load"
-                    }
-                  ]
-                },
-                {
-                  "id": "day139-141",
-                  "dayRange": "139-141",
-                  "type": "practice",
-                  "title": "Веб-приложение с сохранением данных",
-                  "description": "Практика LocalStorage",
-                  "youtubeVideo": "Создаем ToDo приложение на JavaScript с LocalStorage",
-                  "whatToDo": "Создать простое ToDo приложение: добавление задач, удаление, сохранение в LocalStorage. При перезагрузке страницы задачи должны сохраняться.",
-                  "tasks": [
-                    {
-                      "id": "task-js5",
-                      "text": "Создать ToDo приложение",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-js6",
-                      "text": "Реализовать сохранение в LocalStorage",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day142-144",
-                  "dayRange": "142-144",
-                  "type": "theory",
-                  "title": "AJAX, Fetch API, работа с JSON",
-                  "description": "Асинхронные запросы",
-                  "youtubeVideo": "JavaScript Fetch API: делаем HTTP-запросы, работа с JSON",
-                  "whatToUnderstand": "Как делать запросы к серверу, что такое Promise, async/await",
-                  "tasks": [
-                    {
-                      "id": "task-theory-js-10",
-                      "text": "Записать базовый пример fetch() для GET-запроса",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-11",
-                      "text": "Объяснить разницу между Promise, .then() и async/await",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-12",
-                      "text": "Записать пример обработки JSON-ответа: response.json()"
-                    }
-                  ]
-                },
-                {
-                  "id": "day145-147",
-                  "dayRange": "145-147",
-                  "type": "practice",
-                  "title": "Интеграция с внешним API",
-                  "description": "Практика Fetch API",
-                  "youtubeVideo": "Создаем приложение с Fetch API: получаем данные с сервера",
-                  "whatToDo": "Создать страницу, которая получает данные о погоде через бесплатный API (например, OpenWeatherMap) и отображает их. Добавить обработку ошибок.",
-                  "tasks": [
-                    {
-                      "id": "task-js7",
-                      "text": "Создать приложение с Fetch API",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-js8",
-                      "text": "Добавить обработку ошибок",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day148-150",
-                  "dayRange": "148-150",
-                  "type": "theory",
-                  "title": "Cookies, Session Storage, безопасность клиентской стороны",
-                  "description": "Хранение данных и безопасность",
-                  "youtubeVideo": "JavaScript: Cookies, Session Storage, основы безопасности",
-                  "whatToUnderstand": "Разница между LocalStorage, SessionStorage и Cookies, основные уязвимости клиентской стороны",
-                  "tasks": [
-                    {
-                      "id": "task-theory-js-13",
-                      "text": "Записать разницу между LocalStorage, SessionStorage и Cookies",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-14",
-                      "text": "Перечислить основные уязвимости клиентской стороны: XSS, CSRF",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-js-15",
-                      "text": "Объяснить: почему нельзя хранить пароли в LocalStorage"
-                    }
-                  ]
-                },
-                {
-                  "id": "day151-153",
-                  "dayRange": "151-153",
-                  "type": "practice",
-                  "title": "Анализ веб-приложения на уязвимости",
-                  "description": "Анализ безопасности",
-                  "youtubeVideo": "Анализ веб-приложения: DevTools, поиск уязвимостей",
-                  "whatToDo": "1) Открыть любое веб-приложение в браузере. 2) Использовать DevTools для анализа: Network tab (запросы), Application tab (LocalStorage, Cookies), Console (JavaScript ошибки). 3) Найти формы, JavaScript-код, понять структуру запросов.",
-                  "tasks": [
-                    {
-                      "id": "task-js9",
-                      "text": "Изучить DevTools: Network и Application",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-js10",
-                      "text": "Проанализировать структуру веб-приложения",
-                      "completed": false
-                    }
+                    { "id": "task-thm-1", "text": "Зарегистрироваться на TryHackMe", "completed": false },
+                    { "id": "task-thm-2", "text": "Пройти минимум 1 комнату (Pre-Security или Intro)", "completed": false }
                   ]
                 }
               ]
             }
           ],
           "finalProject": {
-            "id": "project3-5",
-            "dayRange": "148-153",
-            "title": "Веб-приложение с HTML, JavaScript и LocalStorage",
-            "youtubeVideo": "Создаем полноценное веб-приложение: HTML, JavaScript, LocalStorage",
-            "description": "Создать простое веб-приложение (например, личный дневник, список задач или заметки): 1) HTML-структура с формами, кнопками, списками. 2) JavaScript для обработки событий, работы с DOM. 3) Сохранение данных в LocalStorage. 4) Возможность добавления, редактирования и удаления записей. 5) Данные должны сохраняться между сессиями.",
+            "id": "project4",
+            "title": "Конспект по инструментам",
+            "description": "В content/tools/ добавить: Nmap (команды, примеры), Wireshark (фильтры), кратко Metasploit. Ссылки на видео.",
+            "youtubeVideo": "Как вести конспекты по инструментам ИБ",
             "tasks": [
-              {
-                "id": "project3-5-task1",
-                "text": "Создать HTML-структуру приложения (формы, кнопки, списки)",
-                "completed": false
-              },
-              {
-                "id": "project3-5-task2",
-                "text": "Реализовать JavaScript логику (события, DOM)",
-                "completed": false
-              },
-              {
-                "id": "project3-5-task3",
-                "text": "Добавить сохранение данных в LocalStorage",
-                "completed": false
-              }
+              { "id": "proj4-1", "text": "Оформить раздел Инструменты с Nmap и Wireshark", "completed": false }
             ]
           }
         },
         {
-          "id": "month3-6",
-          "name": "МЕСЯЦ 3.6: БАЗОВОЕ ПРОГРАММИРОВАНИЕ НА C/C++",
+          "id": "month5",
+          "name": "МЕСЯЦ 5-6: TRYHACKME И ЛАБОРАТОРИЯ",
           "weeks": [
             {
-              "id": "week1-cpp",
-              "name": "НЕДЕЛЯ 1: ОСНОВЫ C/C++",
+              "id": "week-thm-1",
+              "name": "НЕДЕЛЯ 1-4: TRYHACKME BLUE TEAM И ЛАБЫ",
               "days": [
                 {
-                  "id": "day154-155",
-                  "dayRange": "154-155",
-                  "type": "theory",
-                  "title": "Введение в C/C++, переменные, типы данных",
-                  "description": "Основы C/C++",
-                  "youtubeVideo": "C++ для начинающих: установка компилятора, первая программа",
-                  "whatToUnderstand": "Чем C/C++ отличается от Python, как работает компиляция, базовые типы данных (int, float, char, bool)",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-1",
-                      "text": "Записать основные типы данных C++: int, float, double, char, bool и их размеры",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-2",
-                      "text": "Объяснить разницу между объявлением и инициализацией переменной",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-3",
-                      "text": "Определить: что такое компиляция и зачем она нужна"
-                    }
-                  ]
-                },
-                {
-                  "id": "day156-157",
-                  "dayRange": "156-157",
+                  "id": "day55-57",
+                  "dayRange": "55-57",
                   "type": "practice",
-                  "title": "Первые программы на C++",
-                  "description": "Практика C++",
-                  "youtubeVideo": "C++ первая программа: Hello World, компиляция g++",
-                  "whatToDo": "1) Установить g++ (Linux) или MinGW (Windows). 2) Написать программу Hello World. 3) Скомпилировать: g++ hello.cpp -o hello. 4) Запустить программу. 5) Написать программу с переменными разных типов (int, float, char) и вывести их значения.",
+                  "title": "TryHackMe: Pre-Security / Cyber Defense",
+                  "description": "Закрепление основ и введение в защиту.",
+                  "youtubeVideo": "TryHackMe Pre-Security path или Cyber Defense",
+                  "whatToDo": "Пройти путь Pre-Security или начать Cyber Defense Path. Делать заметки для отчёта.",
                   "tasks": [
-                    {
-                      "id": "task-cpp1",
-                      "text": "Установить компилятор g++ или MinGW",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp2",
-                      "text": "Написать и скомпилировать программу Hello World",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp3",
-                      "text": "Создать программу с переменными разных типов и выводом",
-                      "completed": false
-                    }
+                    { "id": "task-thm-3", "text": "Пройти 5+ комнат TryHackMe", "completed": false },
+                    { "id": "task-thm-4", "text": "Выбрать 1 комнату и записать краткий отчёт в content/lab/", "completed": false }
                   ]
                 },
                 {
-                  "id": "day158-159",
-                  "dayRange": "158-159",
+                  "id": "day58-60",
+                  "dayRange": "58-60",
                   "type": "theory",
-                  "title": "Условные операторы и циклы в C++",
-                  "description": "Условия и циклы",
-                  "youtubeVideo": "C++ условия и циклы: if/else, for, while для начинающих",
-                  "whatToUnderstand": "Как работают if/else, циклы for и while, в чем отличие от Python",
+                  "title": "CIA триада и основы Blue Team",
+                  "description": "Confidentiality, Integrity, Availability; чем занимается Blue Team.",
+                  "youtubeVideo": "CIA триада Blue Team vs Red Team",
+                  "whatToUnderstand": "Что такое инцидент, мониторинг, SIEM в общих чертах.",
                   "tasks": [
-                    {
-                      "id": "task-theory-cpp-4",
-                      "text": "Записать синтаксис условного оператора if/else в C++",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-5",
-                      "text": "Записать синтаксис циклов for и while в C++",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-6",
-                      "text": "Объяснить: когда использовать for, а когда while"
-                    }
+                    { "id": "task-bt-1", "text": "Записать определения CIA и примеры", "completed": false },
+                    { "id": "task-bt-2", "text": "Чем Blue Team отличается от Red Team", "completed": false }
                   ]
                 },
                 {
-                  "id": "day160-161",
-                  "dayRange": "160-161",
+                  "id": "day61-63",
+                  "dayRange": "61-63",
                   "type": "practice",
-                  "title": "Программы с условиями и циклами",
-                  "description": "Практика условий и циклов",
-                  "youtubeVideo": "C++ практика: программы с условиями и циклами",
-                  "whatToDo": "1) Написать программу проверки пароля (if/else). 2) Написать программу, которая выводит числа от 1 до 10 и их квадраты (for). 3) Написать программу подсчета четных чисел в массиве [1,2,3,4,5,6,7,8,9,10] (цикл + условие).",
+                  "title": "Цель: 10+ комнат TryHackMe",
+                  "description": "Накопить практику для резюме и портфолио.",
+                  "youtubeVideo": "TryHackMe Blue Team комнаты обзор",
+                  "whatToDo": "Продолжить TryHackMe. Особенно комнаты по сетям, Linux, анализу логов. Ведение списка пройденных комнат в content/lab/.",
                   "tasks": [
-                    {
-                      "id": "task-cpp4",
-                      "text": "Написать программу проверки пароля (if/else)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp5",
-                      "text": "Написать программу с циклом for (числа и их квадраты)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp6",
-                      "text": "Написать программу подсчета четных чисел в массиве",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week2-cpp",
-              "name": "НЕДЕЛЯ 2: УКАЗАТЕЛИ И ПАМЯТЬ",
-              "days": [
-                {
-                  "id": "day162-163",
-                  "dayRange": "162-163",
-                  "type": "theory",
-                  "title": "Указатели - основы",
-                  "description": "Указатели",
-                  "youtubeVideo": "Указатели в C++ для начинающих: что это и зачем нужны",
-                  "whatToUnderstand": "Что такое указатель, как он хранит адрес в памяти, операторы & и *",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-7",
-                      "text": "Объяснить простыми словами: что такое указатель и адрес памяти",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-8",
-                      "text": "Записать разницу между операторами & (адрес) и * (разыменование)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-9",
-                      "text": "Определить: зачем нужны указатели в программировании"
-                    }
-                  ]
-                },
-                {
-                  "id": "day164-165",
-                  "dayRange": "164-165",
-                  "type": "practice",
-                  "title": "Работа с указателями",
-                  "description": "Практика указателей",
-                  "youtubeVideo": "C++ указатели: практические примеры для начинающих",
-                  "whatToDo": "1) Написать программу: создать переменную int, получить её адрес через &, вывести адрес. 2) Создать указатель на int, присвоить ему адрес переменной. 3) Вывести значение через указатель (разыменование *). 4) Изменить значение через указатель и проверить исходную переменную.",
-                  "tasks": [
-                    {
-                      "id": "task-cpp7",
-                      "text": "Написать программу с получением адреса переменной (&)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp8",
-                      "text": "Создать указатель и присвоить ему адрес переменной",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp9",
-                      "text": "Изменить значение переменной через указатель",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day166-167",
-                  "dayRange": "166-167",
-                  "type": "theory",
-                  "title": "Память: стек, куча, управление памятью",
-                  "description": "Управление памятью",
-                  "youtubeVideo": "Память в C++: стек, куча, статическая память для начинающих",
-                  "whatToUnderstand": "Где хранятся переменные, что такое стек и куча, new/delete",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-10",
-                      "text": "Объяснить разницу между стеком (stack) и кучей (heap)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-11",
-                      "text": "Записать синтаксис выделения памяти через new и освобождения через delete",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-12",
-                      "text": "Определить: что будет, если забыть вызвать delete (утечка памяти)"
-                    }
-                  ]
-                },
-                {
-                  "id": "day168-169",
-                  "dayRange": "168-169",
-                  "type": "practice",
-                  "title": "Динамическое выделение памяти",
-                  "description": "Практика new/delete",
-                  "youtubeVideo": "C++ динамическая память: new и delete на практике",
-                  "whatToDo": "1) Написать программу: создать массив из 5 int через new int[5]. 2) Заполнить массив значениями. 3) Вывести все элементы. 4) Освободить память через delete[]. 5) Проверить с Valgrind (Linux) или Dr. Memory (Windows) на утечки памяти.",
-                  "tasks": [
-                    {
-                      "id": "task-cpp10",
-                      "text": "Создать динамический массив через new",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp11",
-                      "text": "Заполнить массив и вывести элементы",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp12",
-                      "text": "Освободить память через delete[] и проверить на утечки",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-cpp",
-              "name": "НЕДЕЛЯ 3: СТРУКТУРЫ И РАБОТА С ФАЙЛАМИ",
-              "days": [
-                {
-                  "id": "day170-171",
-                  "dayRange": "170-171",
-                  "type": "theory",
-                  "title": "Массивы, строки, структуры",
-                  "description": "Структуры данных",
-                  "youtubeVideo": "C++ массивы и структуры: объявление, использование",
-                  "whatToUnderstand": "Как объявлять массивы, работа со строками (char[], string), структуры struct",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-13",
-                      "text": "Записать синтаксис объявления массива int arr[10]",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-14",
-                      "text": "Объяснить разницу между char[] и string в C++",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-15",
-                      "text": "Определить: как создать структуру struct для хранения данных"
-                    }
-                  ]
-                },
-                {
-                  "id": "day172-173",
-                  "dayRange": "172-173",
-                  "type": "practice",
-                  "title": "Работа с массивами и структурами",
-                  "description": "Практика массивов и структур",
-                  "youtubeVideo": "C++ практика: массивы, строки, структуры",
-                  "whatToDo": "1) Создать массив из 10 чисел, заполнить его, найти максимальное значение. 2) Создать структуру Student (name, age, grade). 3) Создать массив из 3 студентов, заполнить данными, вывести информацию о каждом. 4) Найти студента с самым высоким баллом.",
-                  "tasks": [
-                    {
-                      "id": "task-cpp13",
-                      "text": "Создать массив и найти максимальное значение",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp14",
-                      "text": "Создать структуру Student и массив студентов",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp15",
-                      "text": "Найти студента с максимальным баллом",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day184-186",
-                  "dayRange": "184-186",
-                  "type": "theory",
-                  "title": "Работа с файлами в C++",
-                  "description": "Файлы",
-                  "youtubeVideo": "C++ работа с файлами: чтение и запись (fstream)",
-                  "whatToUnderstand": "Как открыть файл, прочитать данные, записать данные (ifstream, ofstream)",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-16",
-                      "text": "Записать синтаксис открытия файла для чтения (ifstream) и записи (ofstream)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-17",
-                      "text": "Объяснить: как проверить, успешно ли открыт файл",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-18",
-                      "text": "Определить: как читать файл построчно или по словам"
-                    }
-                  ]
-                },
-                {
-                  "id": "day176-177",
-                  "dayRange": "176-177",
-                  "type": "practice",
-                  "title": "Программы с файлами",
-                  "description": "Практика работы с файлами",
-                  "youtubeVideo": "C++ файлы: практические примеры чтения и записи",
-                  "whatToDo": "1) Создать текстовый файл data.txt с числами (по одному на строку). 2) Написать программу, которая читает файл и выводит все числа. 3) Написать программу, которая находит сумму всех чисел из файла. 4) Написать программу, которая создает новый файл result.txt и записывает туда результат.",
-                  "tasks": [
-                    {
-                      "id": "task-cpp16",
-                      "text": "Написать программу чтения файла и вывода содержимого",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp17",
-                      "text": "Написать программу подсчета суммы чисел из файла",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp18",
-                      "text": "Написать программу записи результата в новый файл",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week4-cpp",
-              "name": "НЕДЕЛЯ 4: ФУНКЦИИ, ОТЛАДКА И БАЗОВОЕ ПОНИМАНИЕ УЯЗВИМОСТЕЙ",
-              "days": [
-                {
-                  "id": "day190-192",
-                  "dayRange": "190-192",
-                  "type": "theory",
-                  "title": "Функции в C++",
-                  "description": "Функции",
-                  "youtubeVideo": "C++ функции: объявление, параметры, возврат значения",
-                  "whatToUnderstand": "Как объявлять функции, передача параметров по значению и по указателю, возврат значений",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-19",
-                      "text": "Записать синтаксис объявления функции: тип_возврата имя(параметры)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-20",
-                      "text": "Объяснить разницу между передачей по значению и по указателю",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-21",
-                      "text": "Определить: когда использовать void для возвращаемого значения"
-                    }
-                  ]
-                },
-                {
-                  "id": "day180-181",
-                  "dayRange": "180-181",
-                  "type": "practice",
-                  "title": "Программы с функциями",
-                  "description": "Практика функций",
-                  "youtubeVideo": "C++ функции: практические примеры",
-                  "whatToDo": "1) Написать функцию max(int a, int b), которая возвращает большее число. 2) Написать функцию swap(int* a, int* b), которая меняет значения переменных местами через указатели. 3) Написать функцию findMax(int arr[], int size), которая находит максимальный элемент массива. 4) Использовать эти функции в main().",
-                  "tasks": [
-                    {
-                      "id": "task-cpp19",
-                      "text": "Написать функцию max() для двух чисел",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp20",
-                      "text": "Написать функцию swap() с указателями",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp21",
-                      "text": "Написать функцию findMax() для массива",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day182-183",
-                  "dayRange": "182-183",
-                  "type": "theory",
-                  "title": "Компиляция, отладка, базовое понимание buffer overflow",
-                  "description": "Отладка и безопасность",
-                  "youtubeVideo": "GDB отладчик для начинающих: как находить ошибки в C++",
-                  "whatToUnderstand": "Как компилировать с флагами -g, -Wall, использование GDB, что такое buffer overflow на концептуальном уровне",
-                  "tasks": [
-                    {
-                      "id": "task-theory-cpp-22",
-                      "text": "Записать команды GDB: break, run, next, print, continue",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-23",
-                      "text": "Объяснить простыми словами: что такое buffer overflow",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-cpp-24",
-                      "text": "Определить: почему buffer overflow опасен для безопасности"
-                    }
-                  ]
-                },
-                {
-                  "id": "day184-185",
-                  "dayRange": "184-185",
-                  "type": "practice",
-                  "title": "Отладка и компиляция",
-                  "description": "Практика отладки",
-                  "youtubeVideo": "C++ отладка: GDB практическое руководство",
-                  "whatToDo": "1) Скомпилировать программу с флагами -g -Wall: g++ -g -Wall program.cpp -o program. 2) Запустить программу через GDB: gdb ./program. 3) Установить breakpoint на функцию main, запустить программу. 4) Пошагово выполнить программу (next), вывести значение переменной (print). 5) Найти и исправить ошибку в программе с помощью отладчика.",
-                  "tasks": [
-                    {
-                      "id": "task-cpp22",
-                      "text": "Скомпилировать программу с флагами -g -Wall",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp23",
-                      "text": "Запустить программу через GDB и установить breakpoint",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-cpp24",
-                      "text": "Использовать GDB для пошагового выполнения и поиска ошибок",
-                      "completed": false
-                    }
+                    { "id": "task-thm-5", "text": "Пройдено 10+ комнат TryHackMe", "completed": false },
+                    { "id": "task-thm-6", "text": "Обновить content/lab/ списком и мини-отчётами", "completed": false }
                   ]
                 }
               ]
             }
           ],
           "finalProject": {
-            "id": "project3-6",
-            "dayRange": "186-188",
-            "title": "Программа-калькулятор на C++",
-            "youtubeVideo": "C++ проект: создаем калькулятор с функциями",
-            "description": "Создать программу-калькулятор: 1) Функции для сложения, вычитания, умножения, деления. 2) Проверка деления на ноль. 3) Ввод двух чисел и операции от пользователя. 4) Вывод результата. 5) Использовать указатели для передачи параметров в функции. 6) Обработка ошибок (неверный ввод, деление на ноль).",
+            "id": "project5",
+            "title": "Первый отчёт в Лабораторию",
+            "description": "Написать в content/lab/ отчёт: что прошёл, что узнал, скриншот/подтверждение. Готовность раздела к портфолио.",
+            "youtubeVideo": "Как писать отчёты по лабам для портфолио",
             "tasks": [
-              {
-                "id": "project3-6-task1",
-                "text": "Создать функции для арифметических операций",
-                "completed": false
-              },
-              {
-                "id": "project3-6-task2",
-                "text": "Реализовать ввод данных от пользователя",
-                "completed": false
-              },
-              {
-                "id": "project3-6-task3",
-                "text": "Добавить обработку ошибок (деление на ноль, неверный ввод)",
-                "completed": false
-              }
+              { "id": "proj5-1", "text": "Оформить минимум один отчёт в Лабораторию", "completed": false }
             ]
           }
+        },
+        {
+          "id": "month-eng0",
+          "name": "АНГЛИЙСКИЙ ПАРАЛЛЕЛЬНО (вся фаза «База»)",
+          "weeks": [
+            {
+              "id": "week-eng0",
+              "name": "Привычка: 15 мин английского в день",
+              "days": [
+                {
+                  "id": "day-eng0-1",
+                  "dayRange": "1",
+                  "type": "theory",
+                  "title": "Зачем английский уже сейчас для ИБ и США",
+                  "description": "Документация, вакансии и интервью в США — на английском. Привычка 15 мин в день даёт результат к релокации.",
+                  "youtubeVideo": "English for IT professionals cybersecurity",
+                  "whatToUnderstand": "Почему учить английский параллельно с КБ, а не только перед релокацией.",
+                  "tasks": [
+                    { "id": "task-eng0-1", "text": "Посмотреть одно видео по ИБ на английском (например NetworkChuck)", "completed": false },
+                    { "id": "task-eng0-2", "text": "Записать 5–10 терминов ИБ на английском (firewall, breach, incident)", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day-eng0-2",
+                  "dayRange": "2",
+                  "type": "practice",
+                  "title": "Привычка: 15 мин в день",
+                  "description": "Подкаст, видео или приложение (Duolingo, YouTube). Цель — не выучить всё сразу, а держать язык в тонусе.",
+                  "youtubeVideo": "English learning routine 15 minutes daily",
+                  "whatToDo": "Выбрать формат (видео на английском / подкаст / приложение). Выделить 15 мин в день и отмечать в календаре или чеклисте.",
+                  "tasks": [
+                    { "id": "task-eng0-3", "text": "15 мин английского сегодня (видео/подкаст/приложение)", "completed": false },
+                    { "id": "task-eng0-4", "text": "Повторять минимум 3 раза в неделю в течение фазы «База»", "completed": false }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "id": "phase1",
-      "name": "ФАЗА 1: ВХОЖДЕНИЕ В БЕЗОПАСНОСТЬ",
-      "duration": 100,
+      "name": "ФАЗА 1: КОЛЛЕДЖ И РАБОТА (JUNIOR ИБ)",
+      "duration": 60,
       "months": [
         {
-          "id": "month4",
-          "name": "МЕСЯЦ 4: ОСНОВЫ КИБЕРБЕЗОПАСНОСТИ НА ПРАКТИКЕ",
-          "weeks": [
-            {
-              "id": "week1-2-security",
-              "name": "НЕДЕЛЯ 1-2: TRYHACKME - ПОДГОТОВКА",
-              "days": [
-                {
-                  "id": "day189-191",
-                  "dayRange": "189-191",
-                  "type": "theory",
-                  "title": "Принципы безопасности CIA, этичный хакинг",
-                  "description": "Основы безопасности",
-                  "youtubeVideo": "Основы кибербезопасности: CIA триада и этичный хакинг",
-                  "whatToUnderstand": "Чем белый хат отличается от черного, что такое ответственное разглашение",
-                  "tasks": [
-                    {
-                      "id": "task-theory-security-1",
-                      "text": "Расшифровать триаду CIA: Confidentiality, Integrity, Availability - что означает каждый принцип",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-2",
-                      "text": "Записать разницу между белым хакером (white hat), серым (gray hat) и черным (black hat)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-3",
-                      "text": "Объяснить: что такое ответственное разглашение уязвимостей"
-                    }
-                  ]
-                },
-                {
-                  "id": "day192-198",
-                  "dayRange": "192-198",
-                  "type": "practice",
-                  "title": "TryHackMe - Pre-Security Path",
-                  "description": "TryHackMe обучение",
-                  "youtubeVideo": "TryHackMe для начинающих: как начать и первые комнаты",
-                  "whatToDo": "Зарегистрироваться на tryhackme.com. Пройти полностью путь \"Pre-Security\". Особое внимание: комнаты \"Network Fundamentals\", \"Linux Fundamentals\".",
-                  "tasks": [
-                    {
-                      "id": "task37",
-                      "text": "Зарегистрироваться на TryHackMe",
-                      "completed": false
-                    },
-                    {
-                      "id": "task38",
-                      "text": "Пройти Pre-Security Path",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day199-201",
-                  "dayRange": "199-201",
-                  "type": "theory",
-                  "title": "OWASP Top 10 введение",
-                  "description": "OWASP Top 10",
-                  "youtubeVideo": "OWASP Top 10 2021: обзор для начинающих",
-                  "whatToUnderstand": "Какие уязвимости встречаются чаще всего",
-                  "tasks": [
-                    {
-                      "id": "task-theory-security-4",
-                      "text": "Перечислить 5 самых распространенных уязвимостей из OWASP Top 10",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-5",
-                      "text": "Объяснить простыми словами: что такое SQL Injection и XSS",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-6",
-                      "text": "Определить: какую угрозу представляет каждая из этих уязвимостей"
-                    }
-                  ]
-                },
-                {
-                  "id": "day202-205",
-                  "dayRange": "202-205",
-                  "type": "practice",
-                  "title": "TryHackMe - Web Application Security",
-                  "description": "Веб-безопасность",
-                  "youtubeVideo": "TryHackMe: OWASP Top 10 комнаты разбор",
-                  "whatToDo": "Пройти комнаты \"OWASP Top 10\", \"OWASP Juice Shop\".",
-                  "tasks": [
-                    {
-                      "id": "task39",
-                      "text": "Пройти OWASP Top 10 комнаты",
-                      "completed": false
-                    },
-                    {
-                      "id": "task40",
-                      "text": "Пройти OWASP Juice Shop",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-4-security",
-              "name": "НЕДЕЛЯ 3-4: ПЕНТЕСТ С НУЛЯ",
-              "days": [
-                {
-                  "id": "day206-208",
-                  "dayRange": "206-208",
-                  "type": "theory",
-                  "title": "Методология пентеста",
-                  "description": "Методология",
-                  "youtubeVideo": "Методология пентеста: разведка, сканирование, эксплуатация",
-                  "whatToUnderstand": "Из каких этапов состоит профессиональный пентест",
-                  "tasks": [
-                    {
-                      "id": "task-theory-security-7",
-                      "text": "Записать основные этапы пентеста: Reconnaissance, Scanning, Exploitation, etc.",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-8",
-                      "text": "Объяснить разницу между черным ящиком, белым ящиком и серым ящиком",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-9",
-                      "text": "Определить: что происходит на этапе разведки (reconnaissance)"
-                    }
-                  ]
-                },
-                {
-                  "id": "day209-213",
-                  "dayRange": "209-213",
-                  "type": "practice",
-                  "title": "Работа с Nmap и Burp Suite",
-                  "description": "Инструменты пентеста",
-                  "youtubeVideo": "Nmap полный гайд для пентеста: все ключи и примеры",
-                  "whatToDo": "1) Просканировать машину с TryHackMe, определить ОС и службы. 2) Установить Burp Suite Community, настроить прокси в браузере. 3) Перехватить запрос к любому сайту и изменить User-Agent.",
-                  "tasks": [
-                    {
-                      "id": "task41",
-                      "text": "Просканировать машину с Nmap",
-                      "completed": false
-                    },
-                    {
-                      "id": "task42",
-                      "text": "Настроить Burp Suite",
-                      "completed": false
-                    },
-                    {
-                      "id": "task43",
-                      "text": "Перехватить и изменить запрос",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day214-216",
-                  "dayRange": "214-216",
-                  "type": "theory",
-                  "title": "SQL-инъекции и XSS",
-                  "description": "Веб-уязвимости",
-                  "youtubeVideo": "SQL инъекция с нуля: теория и практика на DVWA",
-                  "whatToUnderstand": "Как злоумышленник может \"поговорить\" с базой данных через форму",
-                  "tasks": [
-                    {
-                      "id": "task-theory-security-10",
-                      "text": "Объяснить простыми словами: как работает SQL Injection (пример с кавычками)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-11",
-                      "text": "Записать разницу между Reflected XSS, Stored XSS и DOM-based XSS",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-12",
-                      "text": "Определить: какие данные могут быть украдены через SQL Injection"
-                    }
-                  ]
-                },
-                {
-                  "id": "day217-218",
-                  "dayRange": "217-218",
-                  "type": "practice",
-                  "title": "Взлом учебного стенда",
-                  "description": "DVWA практика",
-                  "youtubeVideo": "Полный разбор DVWA: от низкого до высокого уровня безопасности",
-                  "whatToDo": "Установить DVWA (Damn Vulnerable Web App) на свою виртуальную машину. На уровне Low найти и эксплуатировать: SQL Injection, XSS Reflected, Command Injection.",
-                  "tasks": [
-                    {
-                      "id": "task44",
-                      "text": "Установить DVWA",
-                      "completed": false
-                    },
-                    {
-                      "id": "task45",
-                      "text": "Эксплуатировать SQL Injection",
-                      "completed": false
-                    },
-                    {
-                      "id": "task46",
-                      "text": "Эксплуатировать XSS и Command Injection",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day219-221",
-                  "dayRange": "219-221",
-                  "type": "theory",
-                  "title": "Metasploit Framework основы",
-                  "description": "Metasploit",
-                  "youtubeVideo": "Metasploit Framework для начинающих: установка и первые эксплойты",
-                  "whatToUnderstand": "Как использовать готовые эксплойты для эксплуатации уязвимостей",
-                  "tasks": [
-                    {
-                      "id": "task-theory-security-13",
-                      "text": "Записать основные команды Metasploit: search, use, set, exploit",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-14",
-                      "text": "Объяснить разницу между exploit, payload и handler в Metasploit",
-                      "completed": false
-                    },
-                    {
-                      "id": "task-theory-security-15",
-                      "text": "Определить: что такое reverse shell и bind shell"
-                    }
-                  ]
-                },
-                {
-                  "id": "day222-225",
-                  "dayRange": "222-225",
-                  "type": "practice",
-                  "title": "Работа с Metasploit",
-                  "description": "Практика Metasploit",
-                  "youtubeVideo": "Metasploit: полный разбор от поиска до эксплуатации",
-                  "whatToDo": "1) Установить Metasploit Framework. 2) Найти уязвимую машину на TryHackMe. 3) Использовать Metasploit для получения reverse shell. 4) Изучить основные команды (search, use, set, exploit).",
-                  "tasks": [
-                    {
-                      "id": "task47",
-                      "text": "Установить Metasploit",
-                      "completed": false
-                    },
-                    {
-                      "id": "task48",
-                      "text": "Получить reverse shell",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "month5",
-          "name": "МЕСЯЦ 5: УГЛУБЛЕННЫЙ ПЕНТЕСТ И АНАЛИЗ",
-          "weeks": [
-            {
-              "id": "week1-2-htb",
-              "name": "НЕДЕЛЯ 1-2: HACKTHEBOX STARTING POINT",
-              "days": [
-                {
-                  "id": "day225-227",
-                  "dayRange": "225-227",
-                  "type": "theory",
-                  "title": "Active Directory основы",
-                  "description": "Active Directory",
-                  "youtubeVideo": "Active Directory для пентестеров: основы за 30 минут",
-                  "whatToUnderstand": "Что такое домен, контроллер домена, пользователи и группы",
-                  "tasks": []
-                },
-                {
-                  "id": "day228-234",
-                  "dayRange": "228-234",
-                  "type": "practice",
-                  "title": "HackTheBox Starting Point",
-                  "description": "HTB Starting Point",
-                  "youtubeVideo": "HackTheBox Starting Point полный разбор всех машин",
-                  "whatToDo": "Зарегистрироваться на hackthebox.com. Купить подписку Starting Point. Пройти все машины. ВЕСТИ ДЕТАЛЬНЫЕ ЗАМЕТКИ в формате: IP → найденные порты → найденные уязвимости → использованный эксплойт → полученный флаг.",
-                  "tasks": [
-                    {
-                      "id": "task50",
-                      "text": "Зарегистрироваться на HackTheBox",
-                      "completed": false
-                    },
-                    {
-                      "id": "task51",
-                      "text": "Пройти все машины Starting Point",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day235-237",
-                  "dayRange": "235-237",
-                  "type": "theory",
-                  "title": "Криптография для пентеста",
-                  "description": "Криптография",
-                  "youtubeVideo": "Криптография для хакеров: хэши, шифрование, как ломать",
-                  "whatToUnderstand": "Чем хэш отличается от пароля, что такое John the Ripper",
-                  "tasks": []
-                },
-                {
-                  "id": "day238-239",
-                  "dayRange": "238-239",
-                  "type": "practice",
-                  "title": "Взлом паролей",
-                  "description": "Взлом паролей",
-                  "youtubeVideo": "John the Ripper и Hashcat: полное руководство для начинающих",
-                  "whatToDo": "1) Создать файл с хэшами (MD5, SHA1). 2) С помощью John the Ripper взломать простые пароли. 3) Создать свой словарь из 100 самых частых паролей.",
-                  "tasks": [
-                    {
-                      "id": "task52",
-                      "text": "Взломать хэши с John the Ripper",
-                      "completed": false
-                    },
-                    {
-                      "id": "task53",
-                      "text": "Создать словарь паролей",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "week3-4-htb",
-              "name": "НЕДЕЛЯ 3-4: РЕАЛЬНЫЕ МАШИНЫ HTB",
-              "days": [
-                {
-                  "id": "day240-242",
-                  "dayRange": "240-242",
-                  "type": "theory",
-                  "title": "Привилегия эскалации в Linux и Windows",
-                  "description": "Privilege Escalation",
-                  "youtubeVideo": "Privilege Escalation Linux: 10 основных методов",
-                  "whatToUnderstand": "Как из обычного пользователя стать root/администратором",
-                  "tasks": []
-                },
-                {
-                  "id": "day243-249",
-                  "dayRange": "243-249",
-                  "type": "practice",
-                  "title": "Машины HTB сложности Easy",
-                  "description": "HTB Easy машины",
-                  "youtubeVideo": "HackTheBox машина [Имя машины] полный разбор без спойлеров",
-                  "whatToDo": "Выбрать 2 машины сложности Easy на HackTheBox. Решить их САМОСТОЯТЕЛЬНО в течение 2-3 дней на каждую. Только потом смотреть разбор. Примеры машин: \"Blue\", \"Meow\", \"Fawn\".",
-                  "tasks": [
-                    {
-                      "id": "task54",
-                      "text": "Решить первую Easy машину",
-                      "completed": false
-                    },
-                    {
-                      "id": "task55",
-                      "text": "Решить вторую Easy машину",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day250-252",
-                  "dayRange": "250-252",
-                  "type": "theory",
-                  "title": "PowerShell для Windows пентеста",
-                  "description": "PowerShell",
-                  "youtubeVideo": "PowerShell для пентестеров: основы и полезные команды",
-                  "whatToUnderstand": "Как использовать PowerShell для разведки и эксплуатации в Windows-средах",
-                  "tasks": []
-                },
-                {
-                  "id": "day253-254",
-                  "dayRange": "253-254",
-                  "type": "practice",
-                  "title": "Работа с PowerShell в пентесте",
-                  "description": "PowerShell практика",
-                  "youtubeVideo": "PowerShell в пентесте: разведка и эксплуатация Windows",
-                  "whatToDo": "На Windows-машине (виртуальной) выполнить: 1) Получить информацию о системе (Get-ComputerInfo). 2) Найти все запущенные процессы. 3) Проверить сетевые соединения. 4) Найти файлы с паролями в тексте.",
-                  "tasks": [
-                    {
-                      "id": "task56",
-                      "text": "Выполнить команды PowerShell",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day255-257",
-                  "dayRange": "255-257",
-                  "type": "theory",
-                  "title": "Основы reverse engineering (Ghidra, IDA Free)",
-                  "description": "Reverse Engineering",
-                  "youtubeVideo": "Reverse Engineering для начинающих: Ghidra установка и основы",
-                  "whatToUnderstand": "Как анализировать исполняемые файлы, что такое дизассемблер",
-                  "tasks": []
-                },
-                {
-                  "id": "day258-260",
-                  "dayRange": "258-260",
-                  "type": "practice",
-                  "title": "Анализ простой программы",
-                  "description": "RE практика",
-                  "youtubeVideo": "Ghidra: анализ простой программы для начинающих",
-                  "whatToDo": "1) Установить Ghidra. 2) Скачать простое crackme (учебная программа для взлома). 3) Открыть в Ghidra, найти функцию проверки пароля. 4) Понять логику и найти правильный пароль.",
-                  "tasks": [
-                    {
-                      "id": "task57",
-                      "text": "Установить Ghidra",
-                      "completed": false
-                    },
-                    {
-                      "id": "task58",
-                      "text": "Проанализировать crackme",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day261-263",
-                  "dayRange": "261-263",
-                  "type": "theory",
-                  "title": "Составление отчета о пентесте",
-                  "description": "Отчеты",
-                  "youtubeVideo": "Как писать профессиональный отчет о пентесте: структура и пример",
-                  "whatToUnderstand": "Как оформить результаты для заказчика",
-                  "tasks": []
-                },
-                {
-                  "id": "day264-266",
-                  "dayRange": "264-266",
-                  "type": "practice",
-                  "title": "Написание отчета",
-                  "description": "Практика отчетов",
-                  "youtubeVideo": "Создаем шаблон отчета о пентесте в Word/Google Docs",
-                  "whatToDo": "Оформить полный отчет по одной из решенных машин HTB: описание, методология, найденные уязвимости, доказательства, рекомендации по исправлению.",
-                  "tasks": [
-                    {
-                      "id": "task59",
-                      "text": "Написать отчет по HTB машине",
-                      "completed": false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "id": "month6",
-          "name": "МЕСЯЦ 6: BLUE TEAM И ЗАЩИТА (SOC АНАЛИТИК)",
+          "name": "МЕСЯЦ 1-3: СТАРТ КАРЬЕРЫ JUNIOR ИБ",
           "weeks": [
             {
-              "id": "week1-2-blue",
-              "name": "НЕДЕЛЯ 1-2: СОЗДАНИЕ ЛАБОРАТОРИИ SOC",
+              "id": "week-job-1",
+              "name": "НЕДЕЛЯ 1-4: СТАЖИРОВКА И ПОИСК",
               "days": [
                 {
-                  "id": "day267-269",
-                  "dayRange": "267-269",
-                  "type": "theory",
-                  "title": "Что такое SOC и SIEM",
-                  "description": "SOC и SIEM",
-                  "youtubeVideo": "SOC (Security Operations Center) для начинающих: что такое SIEM",
-                  "whatToUnderstand": "Как работают аналитики, что такое инциденты и алерты",
-                  "tasks": []
-                },
-                {
-                  "id": "day270-276",
-                  "dayRange": "270-276",
+                  "id": "day64-66",
+                  "dayRange": "64-66",
                   "type": "practice",
-                  "title": "Развертывание Wazuh SIEM",
-                  "description": "Wazuh установка",
-                  "youtubeVideo": "Установка Wazuh SIEM с нуля: полное руководство 2024",
-                  "whatToDo": "1) Установить Wazuh сервер на Ubuntu в VirtualBox. 2) Установить Wazuh агент на Windows 10 виртуальную машину. 3) Настроить отправку логов с Windows на сервер. 4) В интерфейсе Wazuh увидеть события с Windows.",
+                  "title": "Резюме и портфолио для Junior ИБ",
+                  "description": "Резюме с учётом базовых навыков: сети, Linux, Python, TryHackMe.",
+                  "youtubeVideo": "Резюме Junior специалист по кибербезопасности",
+                  "whatToDo": "Обновить резюме. Указать: обучение (колледж/курсы), навыки (сети, Linux, Python), TryHackMe/лабы. Ссылка на GitHub и на этот сайт-портфолио.",
                   "tasks": [
-                    {
-                      "id": "task60",
-                      "text": "Установить Wazuh сервер",
-                      "completed": false
-                    },
-                    {
-                      "id": "task61",
-                      "text": "Установить Wazuh агент на Windows",
-                      "completed": false
-                    },
-                    {
-                      "id": "task62",
-                      "text": "Настроить отправку логов",
-                      "completed": false
-                    }
+                    { "id": "task-cv-1", "text": "Оформить резюме под вакансии Junior ИБ/SOC", "completed": false },
+                    { "id": "task-cv-2", "text": "Добавить ссылки на GitHub и портал обучения", "completed": false }
                   ]
                 },
                 {
-                  "id": "day277-279",
-                  "dayRange": "277-279",
+                  "id": "day67-69",
+                  "dayRange": "67-69",
                   "type": "theory",
-                  "title": "Анализ логов Windows и Linux",
-                  "description": "Анализ логов",
-                  "youtubeVideo": "Анализ логов Windows Event Log для SOC аналитика",
-                  "whatToUnderstand": "Какие события важны для безопасности (логины, запуск процессов, изменения в реестре)",
-                  "tasks": []
+                  "title": "Что делают в SOC: алерты, эскалация",
+                  "description": "Понимание работы SOC для собеседований.",
+                  "youtubeVideo": "SOC analyst день из жизни алерты",
+                  "whatToUnderstand": "Откуда алерты, что такое false positive, как эскалировать.",
+                  "tasks": [
+                    { "id": "task-soc-1", "text": "Записать: что такое SOC и основные задачи аналитика", "completed": false },
+                    { "id": "task-soc-2", "text": "Что такое SIEM и зачем он SOC", "completed": false }
+                  ]
                 },
                 {
-                  "id": "day280-281",
-                  "dayRange": "280-281",
+                  "id": "day70-72",
+                  "dayRange": "70-72",
                   "type": "practice",
-                  "title": "Поиск аномалий в логах",
-                  "description": "Анализ логов",
-                  "youtubeVideo": "Wazuh: создаем правила для обнаружения атак",
-                  "whatToDo": "В Wazuh создать правило для обнаружения множественных неудачных попыток входа на Windows (Event ID 4625). Протестировать, сгенерировав такие события.",
+                  "title": "Опыт 1–3 года: цели на период",
+                  "description": "Планирование роста в должности Junior.",
+                  "youtubeVideo": "Карьера в кибербезопасности с нуля до Junior",
+                  "whatToDo": "Поставить цели: участие в инцидентах, ведение документации, изучение логов/SIEM. Отмечать прогресс в чеклисте на сайте.",
                   "tasks": [
-                    {
-                      "id": "task63",
-                      "text": "Создать правило в Wazuh",
-                      "completed": false
-                    }
+                    { "id": "task-job-1", "text": "Устроиться на стажировку или Junior ИБ", "completed": false },
+                    { "id": "task-job-2", "text": "Вести учёт задач и навыков для резюме", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day-eng1",
+                  "dayRange": "—",
+                  "type": "practice",
+                  "title": "Английский для работы: документация и термины SOC/ИБ",
+                  "description": "Чтение статей или доков на английском (TryHackMe room descriptions, документация инструментов). Термины: alert, escalation, false positive, incident.",
+                  "youtubeVideo": "SOC analyst day in the life English",
+                  "whatToDo": "Прочитать одну статью или описание комнаты TryHackMe на английском. Выписать 10 терминов ИБ на английском. Продолжать 15 мин в день.",
+                  "tasks": [
+                    { "id": "task-eng1-1", "text": "Прочитать 1 материал по ИБ на английском", "completed": false },
+                    { "id": "task-eng1-2", "text": "Вести список терминов ИБ на английском (расширять в работе)", "completed": false }
                   ]
                 }
               ]
             },
             {
-              "id": "week3-4-blue",
-              "name": "НЕДЕЛЯ 3-4: ОБНАРУЖЕНИЕ И РЕАГИРОВАНИЕ НА АТАКИ",
+              "id": "week-eng1",
+              "name": "НЕДЕЛЯ: Английский параллельно с работой",
               "days": [
                 {
-                  "id": "day282-284",
-                  "dayRange": "282-284",
-                  "type": "theory",
-                  "title": "MITRE ATT&CK Framework",
-                  "description": "MITRE ATT&CK",
-                  "youtubeVideo": "MITRE ATT&CK для начинающих: как использовать для защиты",
-                  "whatToUnderstand": "Как классифицируются атаки по тактикам и техникам",
-                  "tasks": []
-                },
-                {
-                  "id": "day285-288",
-                  "dayRange": "285-288",
+                  "id": "day-eng1b",
+                  "dayRange": "—",
                   "type": "practice",
-                  "title": "Симуляция атаки и обнаружение",
-                  "description": "Симуляция атак",
-                  "youtubeVideo": "Симуляция атаки на Active Directory и обнаружение в Wazuh",
-                  "whatToDo": "1) На Windows-машине сымитировать атаку: запустить Mimikatz (в учебных целях), создать нового пользователя. 2) В Wazuh найти соответствующие алерты. 3) Связать атаку с техниками MITRE ATT&CK (например, T1003 - Credential Dumping).",
+                  "title": "Привычка 15 мин английского (фаза Колледж/Работа)",
+                  "description": "Не бросать английский: видео, подкасты или чтение доков. К релокации накопится уровень.",
+                  "youtubeVideo": "English for cybersecurity professionals",
+                  "whatToDo": "Минимум 3 раза в неделю по 15 мин — контент на английском (ИБ, IT или общий).",
                   "tasks": [
-                    {
-                      "id": "task64",
-                      "text": "Сымитировать атаку",
-                      "completed": false
-                    },
-                    {
-                      "id": "task65",
-                      "text": "Найти алерты в Wazuh",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day289-291",
-                  "dayRange": "289-291",
-                  "type": "theory",
-                  "title": "Threat Intelligence и IoC",
-                  "description": "Threat Intelligence",
-                  "youtubeVideo": "Threat Intelligence (угрозовый интеллект) для начинающих",
-                  "whatToUnderstand": "Что такое индикаторы компрометации (IoC) и где их брать",
-                  "tasks": []
-                },
-                {
-                  "id": "day292-294",
-                  "dayRange": "292-294",
-                  "type": "practice",
-                  "title": "Работа с IoC и YARA правилами",
-                  "description": "YARA правила",
-                  "youtubeVideo": "YARA правила для обнаружения вредоносного ПО: практическое руководство",
-                  "whatToDo": "1) Изучить формат YARA правил. 2) Написать простое правило для обнаружения подозрительных строк в файлах. 3) Протестировать правило на примере файла.",
-                  "tasks": [
-                    {
-                      "id": "task66",
-                      "text": "Написать YARA правило",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day295-297",
-                  "dayRange": "295-297",
-                  "type": "theory",
-                  "title": "Основы malware analysis",
-                  "description": "Malware Analysis",
-                  "youtubeVideo": "Malware Analysis для начинающих: статический и динамический анализ",
-                  "whatToUnderstand": "Как анализировать вредоносное ПО, что такое sandbox",
-                  "tasks": []
-                },
-                {
-                  "id": "day298-300",
-                  "dayRange": "298-300",
-                  "type": "practice",
-                  "title": "Анализ простого malware (в изолированной среде)",
-                  "description": "Malware анализ",
-                  "youtubeVideo": "Анализ malware в изолированной среде: практика для начинающих",
-                  "whatToDo": "1) Настроить изолированную виртуальную машину (без сети). 2) Скачать учебный образец malware (например, с сайта malware-traffic-analysis.net). 3) Провести базовый статический анализ (strings, file). ВАЖНО: Только в изолированной среде!",
-                  "tasks": [
-                    {
-                      "id": "task67",
-                      "text": "Настроить изолированную среду",
-                      "completed": false
-                    },
-                    {
-                      "id": "task68",
-                      "text": "Провести статический анализ",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day301-303",
-                  "dayRange": "301-303",
-                  "type": "theory",
-                  "title": "Threat Hunting основы",
-                  "description": "Threat Hunting",
-                  "youtubeVideo": "Threat Hunting для начинающих: как искать скрытые угрозы",
-                  "whatToUnderstand": "Как проактивно искать угрозы, а не только реагировать на алерты",
-                  "tasks": []
-                },
-                {
-                  "id": "day304-306",
-                  "dayRange": "304-306",
-                  "type": "practice",
-                  "title": "Практика threat hunting",
-                  "description": "Threat Hunting",
-                  "youtubeVideo": "Threat Hunting в Wazuh: поиск скрытых угроз на практике",
-                  "whatToDo": "В Wazuh провести поиск: 1) Необычных процессов, запущенных в нерабочее время. 2) Подозрительных сетевых соединений. 3) Изменений в критических файлах системы.",
-                  "tasks": [
-                    {
-                      "id": "task69",
-                      "text": "Провести threat hunting в Wazuh",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day307-309",
-                  "dayRange": "307-309",
-                  "type": "theory",
-                  "title": "Инцидент-менеджмент и реагирование",
-                  "description": "Инцидент-менеджмент",
-                  "youtubeVideo": "Инцидент-менеджмент для SOC: от обнаружения до устранения",
-                  "whatToUnderstand": "Как правильно реагировать на инциденты, этапы обработки",
-                  "tasks": []
-                },
-                {
-                  "id": "day310-312",
-                  "dayRange": "310-312",
-                  "type": "practice",
-                  "title": "Финальный проект Blue Team",
-                  "description": "Финальный проект",
-                  "youtubeVideo": "Полный цикл SOC аналитика: от алерта до отчета",
-                  "whatToDo": "1) Создать в лаборатории \"инцидент\": атака через веб-шелл на сервер. 2) Обнаружить ее в Wazuh. 3) Провести расследование: что сделал злоумышленник, какие файлы изменил. 4) Написать отчет о инциденте с рекомендациями по устранению.",
-                  "tasks": [
-                    {
-                      "id": "task70",
-                      "text": "Создать инцидент в лаборатории",
-                      "completed": false
-                    },
-                    {
-                      "id": "task71",
-                      "text": "Провести расследование",
-                      "completed": false
-                    },
-                    {
-                      "id": "task72",
-                      "text": "Написать отчет об инциденте",
-                      "completed": false
-                    }
-                  ]
-                },
-                {
-                  "id": "day313-317",
-                  "dayRange": "313-317",
-                  "type": "practice",
-                  "title": "Подготовка к собеседованию и резюме",
-                  "description": "Карьерная подготовка",
-                  "youtubeVideo": "Как подготовиться к собеседованию SOC аналитика: вопросы и ответы",
-                  "whatToDo": "1) Составить резюме с опытом из лаборатории (Wazuh, анализ логов, инциденты). 2) Подготовить ответы на типичные вопросы: что такое SIEM, как анализировать логи, что такое MITRE ATT&CK. 3) Создать портфолио проектов (HTB машины, отчеты, скрипты). 4) Подготовить рассказ о решенных инцидентах из лаборатории.",
-                  "tasks": [
-                    {
-                      "id": "task73",
-                      "text": "Составить резюме с опытом из лаборатории",
-                      "completed": false
-                    },
-                    {
-                      "id": "task74",
-                      "text": "Подготовить ответы на типичные вопросы собеседования",
-                      "completed": false
-                    },
-                    {
-                      "id": "task75",
-                      "text": "Создать портфолио проектов (HTB, отчеты, скрипты)",
-                      "completed": false
-                    },
-                    {
-                      "id": "task76",
-                      "text": "Подготовить рассказ о решенных инцидентах",
-                      "completed": false
-                    }
+                    { "id": "task-eng1-3", "text": "Отмечать в календаре/чеклисте: 15 мин английского 3+ раз в неделю", "completed": false }
                   ]
                 }
               ]
@@ -2657,8 +532,158 @@
           ]
         }
       ]
+    },
+    {
+      "id": "phase2",
+      "name": "ФАЗА 2: ИНСТИТУТ И СЕРТИФИКАЦИЯ",
+      "duration": 30,
+      "months": [
+        {
+          "id": "month7",
+          "name": "МЕСЯЦ 1-2: БАКАЛАВР И COMPTIA SECURITY+",
+          "weeks": [
+            {
+              "id": "week-cert-1",
+              "name": "НЕДЕЛЯ 1-4: ОБРАЗОВАНИЕ И СЕРТИФИКАТ",
+              "days": [
+                {
+                  "id": "day73-75",
+                  "dayRange": "73-75",
+                  "type": "theory",
+                  "title": "Зачем бакалавр и Security+ для США",
+                  "description": "Требования работодателей и виз в США для ИБ.",
+                  "youtubeVideo": "CompTIA Security+ для работы в США кибербезопасность",
+                  "whatToUnderstand": "IAT Level II, DoD 8570; почему Security+ часто достаточно для entry-level в США.",
+                  "tasks": [
+                    { "id": "task-edu-1", "text": "Записать требования по образованию для США (бакалавр/опыт)", "completed": false },
+                    { "id": "task-edu-2", "text": "Узнать даты и условия сдачи Security+", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day76-78",
+                  "dayRange": "76-78",
+                  "type": "practice",
+                  "title": "Подготовка к CompTIA Security+",
+                  "description": "Домены экзамена: атаки, архитектура, идентификация, криптография, риски.",
+                  "youtubeVideo": "CompTIA Security+ полный курс подготовка",
+                  "whatToDo": "Изучить официальные домены SY0-601/SY0-701. Решать практические вопросы. Записать слабые места в конспект.",
+                  "tasks": [
+                    { "id": "task-sec-1", "text": "Пройти подготовительный курс или материалы по Security+", "completed": false },
+                    { "id": "task-sec-2", "text": "Сдать CompTIA Security+", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day79-81",
+                  "dayRange": "79-81",
+                  "type": "practice",
+                  "title": "Получение диплома бакалавра",
+                  "description": "Формальное завершение образования для релокации.",
+                  "youtubeVideo": "Как совмещать работу и учёбу в IT",
+                  "whatToDo": "Завершить обучение в институте. Получить диплом. Обновить резюме и LinkedIn.",
+                  "tasks": [
+                    { "id": "task-degree-1", "text": "Получить диплом бакалавра", "completed": false },
+                    { "id": "task-degree-2", "text": "Обновить резюме и LinkedIn с дипломом и Security+", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day-eng2",
+                  "dayRange": "81+",
+                  "type": "practice",
+                  "title": "Английский: материалы Security+ на английском",
+                  "description": "Официальные глоссарии и материалы CompTIA — на английском. Привычка читать термины по-английски поможет на экзамене и в США.",
+                  "youtubeVideo": "CompTIA Security+ study guide English",
+                  "whatToDo": "Открыть глоссарий CompTIA Security+ (англ.). Прочитать 20 терминов. Продолжать 15 мин английского в день.",
+                  "tasks": [
+                    { "id": "task-eng2-1", "text": "Прочитать глоссарий Security+ на английском (20+ терминов)", "completed": false },
+                    { "id": "task-eng2-2", "text": "Продолжать привычку 15 мин английского до фазы Релокация", "completed": false }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase3",
+      "name": "ФАЗА 3: РЕЛОКАЦИЯ В США (ФЛОРИДА, BLUE TEAM)",
+      "duration": 20,
+      "months": [
+        {
+          "id": "month8",
+          "name": "МЕСЯЦ 1-2: ПЕРЕЕЗД И ТРУДОУСТРОЙСТВО",
+          "weeks": [
+            {
+              "id": "week-usa-1",
+              "name": "НЕДЕЛЯ 1-4: США И ФЛОРИДА",
+              "days": [
+                {
+                  "id": "day82-84",
+                  "dayRange": "82-84",
+                  "type": "theory",
+                  "title": "Вакансии Blue Team в США: требования",
+                  "description": "Типичные требования: опыт 2+ года, Security+, бакалавр, английский.",
+                  "youtubeVideo": "Cybersecurity jobs USA Blue Team requirements",
+                  "whatToUnderstand": "Роли: SOC Analyst, Security Analyst. Зарплаты и локации (Флорида).",
+                  "tasks": [
+                    { "id": "task-usa-1", "text": "Изучить 5–10 вакансий Blue Team в США/Флориде", "completed": false },
+                    { "id": "task-usa-2", "text": "Записать общие требования и ключевые слова в резюме", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day85-87",
+                  "dayRange": "85-87",
+                  "type": "practice",
+                  "title": "Визы и релокация: H-1B, варианты",
+                  "description": "Понимание процесса спонсорства и переезда.",
+                  "youtubeVideo": "H1B visa tech relocation USA",
+                  "whatToDo": "Узнать про H-1B, другие визы для специалистов. Подготовить английское резюме и профиль LinkedIn под US-рынок.",
+                  "tasks": [
+                    { "id": "task-visa-1", "text": "Изучить варианты виз для работы в США", "completed": false },
+                    { "id": "task-visa-2", "text": "Подготовить английское резюме и LinkedIn", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day88-90",
+                  "dayRange": "88-90",
+                  "type": "practice",
+                  "title": "Английский для собеседований",
+                  "description": "Уровень B2+ для интервью и работы в команде.",
+                  "youtubeVideo": "IT job interview in English cybersecurity",
+                  "whatToDo": "Подготовить ответы на типичные вопросы: рассказ о себе, опыт с инцидентами, знание инструментов. Практика с носителем или курсы.",
+                  "tasks": [
+                    { "id": "task-eng-1", "text": "Подготовить самопрезентацию на английском", "completed": false },
+                    { "id": "task-eng-2", "text": "Пройти пробное собеседование (английский)", "completed": false }
+                  ]
+                },
+                {
+                  "id": "day91-93",
+                  "dayRange": "91-93",
+                  "type": "practice",
+                  "title": "Флорида: компании и аукционы контейнеров",
+                  "description": "Цель: работа в Blue Team в штате Флорида; хобби/бизнес — аукционы контейнеров.",
+                  "youtubeVideo": "Florida tech jobs cybersecurity",
+                  "whatToDo": "Искать вакансии в Флориде (Miami, Tampa, Orlando, Jacksonville). Отдельно изучить тему аукционов контейнеров для личных целей.",
+                  "tasks": [
+                    { "id": "task-fl-1", "text": "Составить список компаний/вакансий в Флориде", "completed": false },
+                    { "id": "task-fl-2", "text": "Отметить в чеклисте: Релокация в США (Флорида)", "completed": false }
+                  ]
+                }
+              ]
+            }
+          ],
+          "finalProject": {
+            "id": "project6",
+            "title": "Финальный чеклист: готовность к релокации",
+            "description": "Проверить: диплом, Security+, опыт 3+ года, резюме EN, LinkedIn, готовность к интервью. Отметить все пункты в разделе Мой Путь на сайте.",
+            "youtubeVideo": "Relocation checklist for tech workers",
+            "tasks": [
+              { "id": "proj6-1", "text": "Все пункты плана (база → релокация) отмечены", "completed": false },
+              { "id": "proj6-2", "text": "Оффер или активный поиск работы в США/Флориде", "completed": false }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
-
-

@@ -5,28 +5,28 @@ let roadmapData = null;
 // Загрузка roadmap.json
 async function loadRoadmap() {
     try {
-        // Определяем базовый путь в зависимости от структуры URL
-        const basePath = window.location.pathname.includes('/pages/') 
-            ? '../data/roadmap.json'  // Если мы в pages/, идем на уровень выше
-            : 'data/roadmap.json';    // Если в корне frontend/
-        
-        // Пробуем разные пути для локальной разработки и GitHub Pages
+        // Строим абсолютный URL относительно текущей страницы (работает при /pages/roadmap.html и на GitHub Pages)
+        const basePath = window.location.pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
+        const absoluteFromPage = new URL(basePath, window.location.href).href;
+
+        // Пробуем разные пути: сначала относительно страницы, затем абсолютные
         const paths = [
+            absoluteFromPage,
             basePath,
-            'data/roadmap.json',
             '/data/roadmap.json',
+            'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            window.location.origin + '/data/roadmap.json'
+            (window.location.origin || '') + '/data/roadmap.json'
         ];
-        
+
         let response = null;
         let lastError = null;
-        
+
         for (const path of paths) {
             try {
                 response = await fetch(path);
-                if (response.ok) {
+                if (response && response.ok) {
                     break;
                 }
             } catch (e) {
@@ -34,20 +34,32 @@ async function loadRoadmap() {
                 continue;
             }
         }
-        
+
         if (!response || !response.ok) {
-            throw new Error('Файл roadmap.json не найден по путям: ' + paths.join(', '));
+            throw new Error('Файл roadmap.json не найден (статус ' + (response ? response.status : 'нет ответа') + ')');
         }
-        
-        roadmapData = await response.json();
+
+        const text = await response.text();
+        try {
+            roadmapData = JSON.parse(text);
+        } catch (parseErr) {
+            console.error('Ошибка парсинга JSON:', parseErr);
+            throw new Error('Файл roadmap.json повреждён или неверный формат JSON.');
+        }
+        if (!roadmapData || !roadmapData.phases) {
+            throw new Error('В roadmap.json нет поля phases.');
+        }
         renderRoadmap();
     } catch (error) {
         console.error('Ошибка загрузки плана:', error);
         console.error('Текущий путь:', window.location.pathname);
         const container = document.getElementById('roadmapContainer');
         if (container) {
-            container.innerHTML = 
-                '<p style="color: red; padding: 2rem; text-align: center;">Ошибка загрузки плана обучения. Проверьте наличие файла data/roadmap.json<br><small>Путь: ' + window.location.pathname + '</small></p>';
+            const isFileProtocol = window.location.protocol === 'file:';
+            container.innerHTML =
+                '<p style="color: red; padding: 2rem; text-align: center;">Ошибка загрузки плана обучения. ' + (error.message || '') +
+                '<br><small>Путь страницы: ' + window.location.pathname + '</small>' +
+                (isFileProtocol ? '<br><br>Откройте сайт через сервер: <code>http://localhost:3000</code> (после <code>npm run dev</code>).</p>' : '</p>');
         }
     }
 }
@@ -391,13 +403,45 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedPhase = e.target.value;
             const phaseSections = document.querySelectorAll('.phase-section');
             
+            const onlyEnglish = selectedPhase === 'english';
             phaseSections.forEach(section => {
-                if (selectedPhase === 'all' || section.dataset.phase === selectedPhase) {
+                if (onlyEnglish || selectedPhase === 'all' || section.dataset.phase === selectedPhase) {
                     section.style.display = 'block';
                 } else {
                     section.style.display = 'none';
                 }
             });
+            const container = document.getElementById('roadmapContainer');
+            if (container) {
+                const allDays = container.querySelectorAll('.day-item');
+                if (onlyEnglish) {
+                    const engKeys = /английск|english/i;
+                    allDays.forEach(el => {
+                        el.style.display = el.textContent.match(engKeys) ? 'block' : 'none';
+                    });
+                    // Скрыть пустые недели, месяцы и фазы
+                    container.querySelectorAll('.week-section').forEach(week => {
+                        const days = week.querySelectorAll('.day-item');
+                        const hasVisible = Array.from(days).some(d => d.style.display !== 'none');
+                        week.style.display = hasVisible ? '' : 'none';
+                    });
+                    container.querySelectorAll('.month-section').forEach(month => {
+                        const weeks = month.querySelectorAll('.week-section');
+                        const finals = month.querySelectorAll('.day-item.final-project');
+                        const hasVisibleWeek = Array.from(weeks).some(w => w.style.display !== 'none');
+                        const visibleFinal = Array.from(finals).some(d => d.style.display !== 'none');
+                        month.style.display = (hasVisibleWeek || visibleFinal) ? '' : 'none';
+                    });
+                    container.querySelectorAll('.phase-section').forEach(phase => {
+                        const months = phase.querySelectorAll('.month-section');
+                        const hasVisibleMonth = Array.from(months).some(m => m.style.display !== 'none');
+                        phase.style.display = hasVisibleMonth ? '' : 'none';
+                    });
+                } else {
+                    allDays.forEach(el => { el.style.display = ''; });
+                    container.querySelectorAll('.week-section, .month-section, .phase-section').forEach(el => { el.style.display = ''; });
+                }
+            }
         });
     }
 

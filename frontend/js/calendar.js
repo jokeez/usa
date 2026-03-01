@@ -144,34 +144,24 @@ function resetCalendarSettings() {
 // Загрузка roadmap
 async function loadRoadmapForCalendar() {
     try {
-        // Определяем базовый путь в зависимости от структуры URL
-        const basePath = window.location.pathname.includes('/pages/') 
-            ? '../data/roadmap.json'  // Если мы в pages/, идем на уровень выше
-            : 'data/roadmap.json';    // Если в корне frontend/
-        
-        // Пробуем разные пути для локальной разработки и GitHub Pages
+        const basePath = window.location.pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
+        const absoluteFromPage = new URL(basePath, window.location.href).href;
         const paths = [
+            absoluteFromPage,
             basePath,
-            'data/roadmap.json',
             '/data/roadmap.json',
+            'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            window.location.origin + '/data/roadmap.json'
+            (window.location.origin || '') + '/data/roadmap.json'
         ];
-        
         let response = null;
-        
         for (const path of paths) {
             try {
                 response = await fetch(path);
-                if (response.ok) {
-                    break;
-                }
-            } catch (e) {
-                continue;
-            }
+                if (response && response.ok) break;
+            } catch (e) { continue; }
         }
-        
         if (!response || !response.ok) {
             throw new Error('Файл roadmap.json не найден');
         }

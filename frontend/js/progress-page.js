@@ -18,17 +18,21 @@ async function loadProgressData() {
 
     // Загрузка roadmap для подсчета общего количества заданий
     try {
-        const basePath = window.location.pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
+        const pathname = window.location.pathname || '';
+        const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
+        const origin = window.location.origin || '';
         const paths = [
             absoluteFromPage,
+            pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
+            pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,
             '/data/roadmap.json',
             'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            (window.location.origin || '') + '/data/roadmap.json'
-        ];
+            origin + '/data/roadmap.json'
+        ].filter(Boolean);
         let response = null;
         for (const path of paths) {
             try {
@@ -39,7 +43,9 @@ async function loadProgressData() {
         if (!response || !response.ok) {
             throw new Error('Файл roadmap.json не найден');
         }
-        const roadmap = await response.json();
+        let text = await response.text();
+        text = text.replace(/^\uFEFF/, '');
+        const roadmap = JSON.parse(text);
         
         let totalTasks = 0;
         roadmap.phases.forEach(phase => {

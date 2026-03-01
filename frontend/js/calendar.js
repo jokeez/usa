@@ -144,17 +144,21 @@ function resetCalendarSettings() {
 // Загрузка roadmap
 async function loadRoadmapForCalendar() {
     try {
-        const basePath = window.location.pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
+        const pathname = window.location.pathname || '';
+        const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
+        const origin = window.location.origin || '';
         const paths = [
             absoluteFromPage,
+            pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
+            pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,
             '/data/roadmap.json',
             'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            (window.location.origin || '') + '/data/roadmap.json'
-        ];
+            origin + '/data/roadmap.json'
+        ].filter(Boolean);
         let response = null;
         for (const path of paths) {
             try {
@@ -165,8 +169,9 @@ async function loadRoadmapForCalendar() {
         if (!response || !response.ok) {
             throw new Error('Файл roadmap.json не найден');
         }
-        
-        roadmapData = await response.json();
+        let text = await response.text();
+        text = text.replace(/^\uFEFF/, '');
+        roadmapData = JSON.parse(text);
         populatePhaseFilter();
         renderCalendar();
         updateStatistics();

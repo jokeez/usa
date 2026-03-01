@@ -5,20 +5,24 @@ let roadmapData = null;
 // Загрузка roadmap.json
 async function loadRoadmap() {
     try {
-        // Строим абсолютный URL относительно текущей страницы (работает при /pages/roadmap.html и на GitHub Pages)
-        const basePath = window.location.pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
+        // Базовый путь сайта (для GitHub Pages: /usa/ или /)
+        const pathname = window.location.pathname || '';
+        const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
+        const origin = window.location.origin || '';
 
-        // Пробуем разные пути: сначала относительно страницы, затем абсолютные
+        // Пути для разных окружений: локально, GitHub Pages (/usa/), корень
         const paths = [
             absoluteFromPage,
+            pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
+            pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,
             '/data/roadmap.json',
             'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            (window.location.origin || '') + '/data/roadmap.json'
-        ];
+            origin + '/data/roadmap.json'
+        ].filter(Boolean);
 
         let response = null;
         let lastError = null;
@@ -39,7 +43,8 @@ async function loadRoadmap() {
             throw new Error('Файл roadmap.json не найден (статус ' + (response ? response.status : 'нет ответа') + ')');
         }
 
-        const text = await response.text();
+        let text = await response.text();
+        text = text.replace(/^\uFEFF/, ''); // убрать BOM, если есть (часто при отдаче с GitHub Pages)
         try {
             roadmapData = JSON.parse(text);
         } catch (parseErr) {

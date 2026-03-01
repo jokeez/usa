@@ -11,7 +11,8 @@ async function loadRoadmap() {
         const absoluteFromPage = new URL(basePath, window.location.href).href;
         const origin = window.location.origin || '';
 
-        // Пути для разных окружений: локально, GitHub Pages (/usa/), корень
+        // Пути для разных окружений: локально, GitHub Pages (/usa/), корень, raw GitHub
+        const isGhPages = pathname.includes('/usa/') || /github\.io/i.test(origin || '');
         const paths = [
             absoluteFromPage,
             pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
@@ -21,38 +22,33 @@ async function loadRoadmap() {
             'data/roadmap.json',
             './data/roadmap.json',
             '../data/roadmap.json',
-            origin + '/data/roadmap.json'
+            origin + '/data/roadmap.json',
+            isGhPages ? 'https://raw.githubusercontent.com/jokeez/usa/main/frontend/data/roadmap.json' : null
         ].filter(Boolean);
 
-        let response = null;
-        let lastError = null;
+        let roadmapDataLoaded = false;
 
         for (const path of paths) {
             try {
-                response = await fetch(path);
-                if (response && response.ok) {
+                const response = await fetch(path);
+                if (!response || !response.ok) continue;
+                let text = await response.text();
+                text = text.replace(/^\uFEFF/, '');
+                if (text.trimStart().startsWith('<')) continue; // ответ — HTML (404 и т.д.)
+                let parsed = null;
+                try {
+                    parsed = JSON.parse(text);
+                } catch (e) { continue; }
+                if (parsed && parsed.phases) {
+                    roadmapData = parsed;
+                    roadmapDataLoaded = true;
                     break;
                 }
-            } catch (e) {
-                lastError = e;
-                continue;
-            }
+            } catch (e) { continue; }
         }
 
-        if (!response || !response.ok) {
-            throw new Error('Файл roadmap.json не найден (статус ' + (response ? response.status : 'нет ответа') + ')');
-        }
-
-        let text = await response.text();
-        text = text.replace(/^\uFEFF/, ''); // убрать BOM, если есть (часто при отдаче с GitHub Pages)
-        try {
-            roadmapData = JSON.parse(text);
-        } catch (parseErr) {
-            console.error('Ошибка парсинга JSON:', parseErr);
-            throw new Error('Файл roadmap.json повреждён или неверный формат JSON.');
-        }
-        if (!roadmapData || !roadmapData.phases) {
-            throw new Error('В roadmap.json нет поля phases.');
+        if (!roadmapDataLoaded || !roadmapData) {
+            throw new Error('Файл roadmap.json не найден или неверный формат. На сайте проверьте, что репозиторий usa содержит frontend/data/roadmap.json.');
         }
         renderRoadmap();
     } catch (error) {

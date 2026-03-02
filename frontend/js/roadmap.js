@@ -2,6 +2,20 @@
 
 let roadmapData = null;
 
+// Безопасные вызовы (если progress.js или app.js не загрузились на GitHub Pages)
+function isTaskCompleted(id) {
+    return typeof ProgressTracker !== 'undefined' && ProgressTracker.isTaskCompleted ? ProgressTracker.isTaskCompleted(id) : false;
+}
+function completeTask(id) {
+    if (typeof ProgressTracker !== 'undefined' && ProgressTracker.completeTask) ProgressTracker.completeTask(id);
+}
+function uncompleteTask(id) {
+    if (typeof ProgressTracker !== 'undefined' && ProgressTracker.uncompleteTask) ProgressTracker.uncompleteTask(id);
+}
+function debounce(fn, ms) {
+    return (typeof Utils !== 'undefined' && Utils.debounce) ? Utils.debounce(fn, ms) : fn;
+}
+
 // Базовый путь для GitHub Pages (любой репозиторий: /подготовка/, /usa/ и т.д.)
 function getGhPagesBasePath() {
     const pathname = (window.location.pathname || '').replace(/\/$/, '');
@@ -23,8 +37,13 @@ async function loadRoadmap() {
         const ghBase = getGhPagesBasePath();
         const isGhPages = /github\.io/i.test(origin || '');
 
-        // Пути: текущая страница, GitHub Pages с любым именем репо, затем стандартные
+        // Явный путь для jokeez.github.io/usa/frontend/pages/roadmap.html
+        const dataPathFromPages = pathname.replace(/\/pages\/[^/]*$/, '') + '/data/roadmap.json';
+        const absoluteDataFromPages = origin + dataPathFromPages;
+
+        // Пути: явный для /usa/frontend/pages/, текущая страница, GitHub Pages, raw fallback
         const paths = [
+            absoluteDataFromPages,
             absoluteFromPage,
             ghBase ? origin + ghBase + '/frontend/data/roadmap.json' : null,
             ghBase ? ghBase + '/frontend/data/roadmap.json' : null,
@@ -36,7 +55,7 @@ async function loadRoadmap() {
             './data/roadmap.json',
             '../data/roadmap.json',
             origin + '/data/roadmap.json',
-            isGhPages && ghBase ? 'https://raw.githubusercontent.com/jokeez/usa/main/frontend/data/roadmap.json' : null
+            isGhPages ? 'https://raw.githubusercontent.com/jokeez/usa/main/frontend/data/roadmap.json' : null
         ].filter(Boolean);
 
         let roadmapDataLoaded = false;
@@ -153,7 +172,7 @@ function renderRoadmap() {
                                     throw new Error(`Day ${dayCount} missing id`);
                                 }
                                 
-                                const isCompleted = ProgressTracker.isTaskCompleted(dayId);
+                                const isCompleted = isTaskCompleted(dayId);
                                 
                                 // Экранируем HTML для безопасности (полное экранирование)
                                 const safeTitle = escapeHtml(day.title || '');
@@ -191,7 +210,7 @@ function renderRoadmap() {
                             ${day.tasks && day.tasks.length > 0 ? `
                                 <div class="tasks-list">
                                     ${day.tasks.map(task => {
-                                        const taskCompleted = ProgressTracker.isTaskCompleted(task.id);
+                                        const taskCompleted = isTaskCompleted(task.id);
                                         const safeTaskText = escapeHtml(task.text || '');
                                         const safeTaskId = task.id.replace(/'/g, "\\'").replace(/"/g, '\\"');
                                         return `
@@ -243,7 +262,7 @@ function renderRoadmap() {
                             ${month.finalProject.tasks && month.finalProject.tasks.length > 0 ? `
                                 <div class="tasks-list">
                                     ${month.finalProject.tasks.map(task => {
-                                        const taskCompleted = ProgressTracker.isTaskCompleted(task.id);
+                                        const taskCompleted = isTaskCompleted(task.id);
                                         const safeTaskText = escapeHtml(task.text || '');
                                         const safeTaskId = task.id.replace(/'/g, "\\'").replace(/"/g, '\\"');
                                         return `
@@ -470,9 +489,9 @@ function toggleTask(taskId) {
     if (!checkbox) return;
     
     if (checkbox.checked) {
-        ProgressTracker.completeTask(taskId);
+        completeTask(taskId);
     } else {
-        ProgressTracker.uncompleteTask(taskId);
+        uncompleteTask(taskId);
     }
     
     // Обновление визуального состояния
@@ -515,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Поиск
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.addEventListener('input', Utils.debounce((e) => {
+        searchInput.addEventListener('input', debounce((e) => {
             const query = e.target.value.toLowerCase();
             const dayItems = document.querySelectorAll('.day-item');
             

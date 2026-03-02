@@ -22,8 +22,13 @@ async function loadProgressData() {
         const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
         const origin = window.location.origin || '';
+        const pathnameClean = (pathname || '').replace(/\/$/, '');
+        const segments = pathnameClean.split('/').filter(Boolean);
+        const ghBase = (segments.length >= 1 && segments[0] !== 'pages' && segments[0] !== 'index.html') ? '/' + segments[0] : '';
         const paths = [
             absoluteFromPage,
+            ghBase ? origin + ghBase + '/frontend/data/roadmap.json' : null,
+            ghBase ? ghBase + '/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,

@@ -141,6 +141,16 @@ function resetCalendarSettings() {
     applyCalendarSettings();
 }
 
+// Базовый путь для GitHub Pages (любой репозиторий)
+function getGhPagesBasePath() {
+    const pathname = (window.location.pathname || '').replace(/\/$/, '');
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length >= 1 && segments[0] !== 'pages' && segments[0] !== 'index.html') {
+        return '/' + segments[0];
+    }
+    return '';
+}
+
 // Загрузка roadmap
 async function loadRoadmapForCalendar() {
     try {
@@ -148,8 +158,11 @@ async function loadRoadmapForCalendar() {
         const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
         const origin = window.location.origin || '';
+        const ghBase = getGhPagesBasePath();
         const paths = [
             absoluteFromPage,
+            ghBase ? origin + ghBase + '/frontend/data/roadmap.json' : null,
+            ghBase ? ghBase + '/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,
@@ -196,6 +209,11 @@ function populatePhaseFilter() {
         option.textContent = phase.name;
         phaseFilter.appendChild(option);
     });
+    // Опция «Только блоки по английскому» (как на странице плана)
+    const engOption = document.createElement('option');
+    engOption.value = 'english';
+    engOption.textContent = 'Только блоки по английскому';
+    phaseFilter.appendChild(engOption);
 }
 
 // Переключение вида
@@ -575,8 +593,13 @@ function getStartDate() {
 // Проверка прохождения фильтров
 function passesFilters(dayInfo, dateStr) {
     // Фильтр по фазе
-    if (currentFilters.phase !== 'all' && dayInfo.phase !== currentFilters.phase) {
-        return false;
+    if (currentFilters.phase !== 'all') {
+        if (currentFilters.phase === 'english') {
+            const text = (dayInfo.title || '') + ' ' + (dayInfo.phaseName || '');
+            if (!/английск|english/i.test(text)) return false;
+        } else if (dayInfo.phase !== currentFilters.phase) {
+            return false;
+        }
     }
     
     // Фильтр по статусу

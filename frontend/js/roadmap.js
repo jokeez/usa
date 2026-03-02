@@ -2,19 +2,32 @@
 
 let roadmapData = null;
 
+// Базовый путь для GitHub Pages (любой репозиторий: /подготовка/, /usa/ и т.д.)
+function getGhPagesBasePath() {
+    const pathname = (window.location.pathname || '').replace(/\/$/, '');
+    const segments = pathname.split('/').filter(Boolean);
+    // Если путь вида /repo/pages/... или /repo/index.html — база это repo
+    if (segments.length >= 1 && segments[0] !== 'pages' && segments[0] !== 'index.html') {
+        return '/' + segments[0];
+    }
+    return '';
+}
+
 // Загрузка roadmap.json
 async function loadRoadmap() {
     try {
-        // Базовый путь сайта (для GitHub Pages: /usa/ или /)
         const pathname = window.location.pathname || '';
         const basePath = pathname.includes('/pages/') ? '../data/roadmap.json' : 'data/roadmap.json';
         const absoluteFromPage = new URL(basePath, window.location.href).href;
         const origin = window.location.origin || '';
+        const ghBase = getGhPagesBasePath();
+        const isGhPages = /github\.io/i.test(origin || '');
 
-        // Пути для разных окружений: локально, GitHub Pages (/usa/), корень, raw GitHub
-        const isGhPages = pathname.includes('/usa/') || /github\.io/i.test(origin || '');
+        // Пути: текущая страница, GitHub Pages с любым именем репо, затем стандартные
         const paths = [
             absoluteFromPage,
+            ghBase ? origin + ghBase + '/frontend/data/roadmap.json' : null,
+            ghBase ? ghBase + '/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? origin + '/usa/frontend/data/roadmap.json' : null,
             pathname.includes('/usa/') ? '/usa/frontend/data/roadmap.json' : null,
             basePath,
@@ -23,7 +36,7 @@ async function loadRoadmap() {
             './data/roadmap.json',
             '../data/roadmap.json',
             origin + '/data/roadmap.json',
-            isGhPages ? 'https://raw.githubusercontent.com/jokeez/usa/main/frontend/data/roadmap.json' : null
+            isGhPages && ghBase ? 'https://raw.githubusercontent.com/jokeez/usa/main/frontend/data/roadmap.json' : null
         ].filter(Boolean);
 
         let roadmapDataLoaded = false;

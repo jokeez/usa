@@ -108,10 +108,14 @@ function renderRoadmap() {
             
             html += `
             <div class="phase-section" data-phase="${phase.id}">
-                <div class="phase-header">
-                    <h2>${phase.name}</h2>
-                    <p>Длительность: ${phase.duration} дней</p>
+                <div class="phase-header phase-header--clickable" role="button" tabindex="0" aria-expanded="true" aria-controls="phase-body-${phase.id}" id="phase-header-${phase.id}">
+                    <span class="phase-header__toggle" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    <div class="phase-header__text">
+                        <h2>${phase.name}</h2>
+                        <p>Длительность: ${phase.duration} дней</p>
+                    </div>
                 </div>
+                <div class="phase-body" id="phase-body-${phase.id}" aria-labelledby="phase-header-${phase.id}">
         `;
 
             phase.months.forEach((month, monthIndex) => {
@@ -262,7 +266,7 @@ function renderRoadmap() {
                 html += `</div>`; // month-section
             });
 
-            html += `</div>`; // phase-section
+            html += `</div></div>`; // phase-body, phase-section
         });
 
         console.log('Генерация HTML завершена. Дней обработано:', dayCount);
@@ -308,6 +312,9 @@ function renderRoadmap() {
             });
         });
         localStorage.setItem('total_tasks_count', totalTasksCount.toString());
+
+        // Применить текущий фильтр фаз
+        applyPhaseFilter();
     } catch (error) {
         console.error('Ошибка рендеринга плана обучения:', error);
         console.error('Stack trace:', error.stack);
@@ -315,6 +322,76 @@ function renderRoadmap() {
         if (container) {
             container.innerHTML = '<p style="color: red; padding: 2rem; text-align: center;">Ошибка отображения плана обучения. Проверьте консоль браузера для деталей.</p>';
         }
+    }
+}
+
+// Применить фильтр по фазе (выбор в селекте)
+function applyPhaseFilter() {
+    const phaseFilter = document.getElementById('phaseFilter');
+    const container = document.getElementById('roadmapContainer');
+    if (!phaseFilter || !container) return;
+
+    const selectedPhase = phaseFilter.value;
+    const phaseSections = container.querySelectorAll('.phase-section');
+    const onlyEnglish = selectedPhase === 'english';
+
+    phaseSections.forEach(section => {
+        const phaseId = section.dataset.phase;
+        const show = onlyEnglish || selectedPhase === 'all' || phaseId === selectedPhase;
+        section.style.display = show ? 'block' : 'none';
+    });
+
+    const allDays = container.querySelectorAll('.day-item');
+    if (onlyEnglish) {
+        const engKeys = /английск|english/i;
+        allDays.forEach(el => {
+            el.style.display = el.textContent.match(engKeys) ? 'block' : 'none';
+        });
+        container.querySelectorAll('.week-section').forEach(week => {
+            const days = week.querySelectorAll('.day-item');
+            const hasVisible = Array.from(days).some(d => d.style.display !== 'none');
+            week.style.display = hasVisible ? '' : 'none';
+        });
+        container.querySelectorAll('.month-section').forEach(month => {
+            const weeks = month.querySelectorAll('.week-section');
+            const finals = month.querySelectorAll('.day-item.final-project');
+            const hasVisibleWeek = Array.from(weeks).some(w => w.style.display !== 'none');
+            const visibleFinal = Array.from(finals).some(d => d.style.display !== 'none');
+            month.style.display = (hasVisibleWeek || visibleFinal) ? '' : 'none';
+        });
+        container.querySelectorAll('.phase-section').forEach(phase => {
+            const months = phase.querySelectorAll('.month-section');
+            const hasVisibleMonth = Array.from(months).some(m => m.style.display !== 'none');
+            phase.style.display = hasVisibleMonth ? 'block' : 'none';
+        });
+    } else {
+        allDays.forEach(el => { el.style.display = ''; });
+        container.querySelectorAll('.week-section, .month-section').forEach(el => { el.style.display = ''; });
+    }
+
+    // Прокрутка к первой видимой фазе при смене фильтра (не "Все фазы")
+    if (selectedPhase !== 'all' && selectedPhase !== 'english') {
+        const firstVisible = Array.from(container.querySelectorAll('.phase-section')).find(s => s.style.display !== 'none');
+        if (firstVisible) {
+            firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+}
+
+// Клик по заголовку фазы — открыть/закрыть (аккордеон)
+function togglePhaseBody(header) {
+    const section = header.closest('.phase-section');
+    if (!section) return;
+    const body = section.querySelector('.phase-body');
+    const toggleIcon = header.querySelector('.phase-header__toggle i');
+    if (!body) return;
+
+    const isExpanded = body.getAttribute('aria-hidden') !== 'true';
+    body.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
+    body.style.display = isExpanded ? 'none' : '';
+    header.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+    if (toggleIcon) {
+        toggleIcon.className = isExpanded ? 'fas fa-chevron-right' : 'fas fa-chevron-down';
     }
 }
 
@@ -409,52 +486,28 @@ function toggleTask(taskId) {
     }
 }
 
-// Фильтрация по фазе
+// Фильтрация по фазе и делегирование кликов по заголовкам
 document.addEventListener('DOMContentLoaded', () => {
     const phaseFilter = document.getElementById('phaseFilter');
     if (phaseFilter) {
-        phaseFilter.addEventListener('change', (e) => {
-            const selectedPhase = e.target.value;
-            const phaseSections = document.querySelectorAll('.phase-section');
-            
-            const onlyEnglish = selectedPhase === 'english';
-            phaseSections.forEach(section => {
-                if (onlyEnglish || selectedPhase === 'all' || section.dataset.phase === selectedPhase) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-            const container = document.getElementById('roadmapContainer');
-            if (container) {
-                const allDays = container.querySelectorAll('.day-item');
-                if (onlyEnglish) {
-                    const engKeys = /английск|english/i;
-                    allDays.forEach(el => {
-                        el.style.display = el.textContent.match(engKeys) ? 'block' : 'none';
-                    });
-                    // Скрыть пустые недели, месяцы и фазы
-                    container.querySelectorAll('.week-section').forEach(week => {
-                        const days = week.querySelectorAll('.day-item');
-                        const hasVisible = Array.from(days).some(d => d.style.display !== 'none');
-                        week.style.display = hasVisible ? '' : 'none';
-                    });
-                    container.querySelectorAll('.month-section').forEach(month => {
-                        const weeks = month.querySelectorAll('.week-section');
-                        const finals = month.querySelectorAll('.day-item.final-project');
-                        const hasVisibleWeek = Array.from(weeks).some(w => w.style.display !== 'none');
-                        const visibleFinal = Array.from(finals).some(d => d.style.display !== 'none');
-                        month.style.display = (hasVisibleWeek || visibleFinal) ? '' : 'none';
-                    });
-                    container.querySelectorAll('.phase-section').forEach(phase => {
-                        const months = phase.querySelectorAll('.month-section');
-                        const hasVisibleMonth = Array.from(months).some(m => m.style.display !== 'none');
-                        phase.style.display = hasVisibleMonth ? '' : 'none';
-                    });
-                } else {
-                    allDays.forEach(el => { el.style.display = ''; });
-                    container.querySelectorAll('.week-section, .month-section, .phase-section').forEach(el => { el.style.display = ''; });
-                }
+        phaseFilter.addEventListener('change', () => applyPhaseFilter());
+    }
+
+    // Клик по заголовку фазы (аккордеон) — работает и после динамической подгрузки
+    const container = document.getElementById('roadmapContainer');
+    if (container) {
+        container.addEventListener('click', (e) => {
+            const header = e.target.closest('.phase-header--clickable');
+            if (header) {
+                e.preventDefault();
+                togglePhaseBody(header);
+            }
+        });
+        container.addEventListener('keydown', (e) => {
+            const header = e.target.closest('.phase-header--clickable');
+            if (header && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                togglePhaseBody(header);
             }
         });
     }

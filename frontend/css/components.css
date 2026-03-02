@@ -58,9 +58,37 @@
     margin-bottom: 1.5rem;
 }
 
+.phase-header--clickable {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.phase-header--clickable:hover {
+    opacity: 0.95;
+}
+
+.phase-header__toggle {
+    flex-shrink: 0;
+    width: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.phase-header__text {
+    flex: 1;
+}
+
 .phase-header h2 {
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
+}
+
+.phase-body {
+    margin-bottom: 1rem;
 }
 
 .month-section {
